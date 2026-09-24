@@ -64,3 +64,14 @@
 ## پیش‌نمایش نسخه اول
 
 ![ODLINKZ v1 desktop preview](screenshots/ODLINKZ-v1-desktop.png.png)
+
+## پیش‌نمایش نسخه دوم
+
+### دسکتاپ
+
+![نمای دسکتاپ اودلینک‌ز](https://github.com/AliZ01Dev/ODLINKZ/blob/main/screenshots/ODLINKZ-v2-desktop.png)
+
+
+### موبایل
+
+<img src="https://github.com/AliZ01Dev/ODLINKZ/blob/main/screenshots/ODLINKZ-v2-Mobile.png" alt="نمای موبایل اودلینک‌ز" width="320">
