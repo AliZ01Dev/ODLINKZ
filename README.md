@@ -46,4 +46,4 @@
 
 ## پیش‌نمایش نسخه اول
 
-![ODLINKZ v1 desktop preview](screenshots/ODLINKZ-v1-desktop.png)
+![ODLINKZ v1 desktop preview](screenshots/ODLINKZ-v1-desktop.png.png)
