@@ -43,3 +43,7 @@
 - v1.0.0: نسخه اولیه رابط کاربری
 
 [مشاهده نسخه آنلاین](https://aliz01dev.github.io/ODLINKZ/)
+
+## پیش‌نمایش نسخه اول
+
+![ODLINKZ v1 desktop preview](screenshots/ODLINKZ-v1-desktop.png)
