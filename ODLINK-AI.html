@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b35">
+  <meta name="description"
+        content="نمونه طراحی وب‌سایت آزمایشگاه اودلینک‌ز؛ راهنمای آزمایش‌ها، خدمات و نوبت‌دهی نمایشی.">
+  <title>اودلینک‌ز | نمونه وب‌سایت آزمایشگاه</title>
+
+  <style>
+    :root {
+      --bg: #f5f8f8;
+      --surface: #fff;
+      --ink: #102b35;
+      --muted: #526971;
+      --brand: #087e80;
+      --brand-dark: #056265;
+      --mint: #dff5ee;
+      --line: #dce7e8;
+      --radius: 24px;
+      --shadow: 0 18px 55px #102b350b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.9;
+    }
+    body.modal-open { overflow: hidden; }
+    button, input, select { font: inherit; }
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.6; }
+    :focus-visible { outline: 3px solid #bb7400; outline-offset: 4px; }
+    [hidden] { display: none !important; }
+
+    .container { width: min(1160px, 92%); margin-inline: auto; }
+    .muted { color: var(--muted); }
+    .eyebrow {
+      display: inline-block;
+      font-size: .83rem;
+      font-weight: bold;
+      color: var(--brand-dark);
+      margin-bottom: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 10px 20px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      background: var(--brand);
+      color: white;
+      font-weight: bold;
+      transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+    .btn.secondary { background: white; color: var(--ink); border-color: var(--line); }
+    .btn.secondary:hover { background: #edf5f5; }
+    .btn.dark { background: var(--ink); }
+    .skip {
+      position: absolute;
+      top: -100px;
+      right: 16px;
+      z-index: 100;
+      background: white;
+      padding: 12px;
+    }
+    .skip:focus { top: 12px; }
+    .demo-bar {
+      padding: 7px 16px;
+      text-align: center;
+      background: var(--ink);
+      color: #e4f2f3;
+      font-size: .75rem;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #ffffffed;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .header-inner {
+      min-height: 83px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--brand);
+      color: white;
+      font-size: 29px;
+    }
+    .logo strong { display: block; font-size: 1.25rem; line-height: 1.4; }
+    .logo small { display: block; color: var(--muted); font-size: .66rem; }
+    nav { display: flex; gap: 23px; font-size: .85rem; }
+    nav a:hover { color: var(--brand); }
+    .menu-toggle { display: none; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 65px;
+      padding-block: 75px 60px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border: 1px solid #c9e7dc;
+      border-radius: 30px;
+      background: #eaf8f1;
+      color: #246047;
+      font-size: .76rem;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #25825d; }
+    h1 { font-size: clamp(2rem, 4.2vw, 3.6rem); margin-block: 20px; letter-spacing: -1.7px; }
+    h1 span { color: var(--brand); }
+    .hero-copy > p { color: var(--muted); max-width: 510px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
+    .hero-note { margin-top: 22px; font-size: .78rem; color: var(--muted); }
+
+    .visual {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #d1e5e4;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 20% 15%, #c5f4df, transparent 48%),
+        linear-gradient(145deg, #e3f2ef, #d8e9ee);
+    }
+    .visual::before, .visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid #93bebb70;
+      border-radius: 50%;
+      width: 330px;
+      height: 330px;
+    }
+    .visual::after { width: 250px; height: 250px; }
+    .science-art { position: relative; z-index: 1; width: 220px; }
+    .float-card {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 17px;
+      border: 1px solid #ffffff;
+      border-radius: 17px;
+      background: #ffffffed;
+      box-shadow: var(--shadow);
+      font-size: .8rem;
+    }
+    .float-card small { display: block; color: var(--muted); }
+    .float-card.top { top: 30px; right: 20px; }
+    .float-card.bottom { bottom: 32px; left: 20px; }
+    .mini-icon {
+      display: grid;
+      place-items: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 12px;
+      background: var(--mint);
+      color: var(--brand-dark);
+      font-size: 1.2rem;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 36px;
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 21px;
+      text-align: right;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: white;
+      color: var(--ink);
+      transition: border-color .2s, transform .2s;
+    }
+    .quick-link:hover { border-color: var(--brand); transform: translateY(-3px); }
+    .quick-link strong { display: block; font-size: .88rem; }
+    .quick-link small { color: var(--muted); font-size: .71rem; }
+    section.block { padding-block: 48px; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+    .section-head h2 { margin-bottom: 7px; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .section-head p { margin-bottom: 0; color: var(--muted); font-size: .88rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
+    .card {
+      background: white;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .service-number {
+      display: inline-block;
+      color: var(--brand);
+      font-size: .8rem;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .card h3 { font-size: 1.08rem; margin-bottom: 10px; }
+    .card p { font-size: .86rem; color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: .7rem;
+      border-radius: 8px;
+      background: #eff6f6;
+      color: var(--brand-dark);
+    }
+    .search-wrap { min-width: min(100%, 290px); }
+    .search-wrap label { display: block; font-size: .75rem; margin-bottom: 5px; }
+    input, select {
+      width: 100%;
+      min-height: 47px;
+      padding: 10px 13px;
+      border: 1px solid #bacdd0;
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+    }
+    input:focus, select:focus { border-color: var(--brand); }
+    .test-card { display: flex; flex-direction: column; align-items: start; }
+    .test-code { font-size: 1.3rem; color: var(--brand); font-weight: bold; margin-bottom: 10px; }
+    .test-card .btn { margin-top: auto; font-size: .78rem; min-height: 40px; }
+    .search-status { color: var(--muted); font-size: .8rem; margin-top: 16px; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 38px;
+      border-radius: 30px;
+      background: var(--ink);
+      color: white;
+    }
+    .about p { color: #c3d7dc; font-size: .9rem; }
+    .about .eyebrow { color: #8ee0cd; }
+    .about-features { display: grid; gap: 12px; }
+    .about-feature {
+      padding: 18px;
+      border: 1px solid #ffffff25;
+      border-radius: 16px;
+      background: #ffffff08;
+    }
+    .about-feature strong { display: block; margin-bottom: 4px; font-size: .9rem; }
+    .about-feature span { color: #c3d7dc; font-size: .8rem; }
+
+    .insurance-list { display: flex; flex-wrap: wrap; gap: 12px; }
+    .insurance-list span {
+      padding: 16px 23px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      font-size: .85rem;
+    }
+    .notice { font-size: .78rem; color: var(--muted); margin-top: 15px; }
+
+    .home-service {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 36px;
+      border-radius: 26px;
+      background: var(--mint);
+      border: 1px solid #c3e9da;
+    }
+    .home-service h2 { margin-bottom: 10px; }
+    .home-service p { color: #395e54; margin-bottom: 0; }
+    .home-service .btn { flex-shrink: 0; }
+
+    .faq-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 40px; }
+    details {
+      margin-bottom: 12px;
+      padding: 18px 22px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    summary { cursor: pointer; font-size: .9rem; font-weight: bold; }
+    details p { margin: 13px 0 0; color: var(--muted); font-size: .85rem; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-item { padding-block: 12px; border-bottom: 1px solid var(--line); }
+    .contact-item:last-child { border: 0; }
+    .contact-item strong { display: block; font-size: .8rem; }
+    .contact-item span { font-size: .88rem; color: var(--muted); }
+    .map-placeholder {
+      min-height: 270px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background-color: #e7efed;
+      background-image:
+        linear-gradient(#ffffff90 2px, transparent 2px),
+        linear-gradient(90deg, #ffffff90 2px, transparent 2px);
+      background-size: 38px 38px;
+      padding: 25px;
+    }
+    .map-placeholder div { background: #ffffffee; border-radius: 18px; padding: 23px; }
+    .map-placeholder p { margin: 6px 0 0; font-size: .8rem; color: var(--muted); }
+    footer { margin-top: 35px; padding: 29px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: .77rem; color: var(--muted); }
+
+    dialog {
+      width: min(520px, 92vw);
+      max-height: 88dvh;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      color: var(--ink);
+      box-shadow: 0 30px 100px #0003;
+    }
+    dialog::backdrop { background: #08212cbc; backdrop-filter: blur(5px); }
+    .dialog-header { display: flex; justify-content: space-between; align-items: start; gap: 15px; }
+    .dialog-header h2 { font-size: 1.25rem; }
+    .close {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 11px;
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+    .form-field { display: grid; gap: 5px; margin-bottom: 15px; }
+    .form-field label { font-size: .84rem; }
+    .demo-note {
+      padding: 12px;
+      border-radius: 12px;
+      background: #fff5db;
+      color: #6d5113;
+      font-size: .78rem;
+      margin-bottom: 20px;
+    }
+    .feedback {
+      margin-top: 16px;
+      padding: 13px;
+      background: var(--mint);
+      color: #185846;
+      border-radius: 12px;
+      font-size: .85rem;
+    }
+    .full { width: 100%; }
+
+    @media (max-width: 960px) {
+      nav { gap: 13px; font-size: .78rem; }
+      .header-inner > .btn { display: none; }
+      .hero { gap: 30px; }
+      .quick-links { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .menu-toggle { display: inline-flex; padding: 8px 12px; }
+      nav { display: none; width: 100%; padding: 16px 0; flex-wrap: wrap; gap: 20px; }
+      nav.open { display: flex; }
+      .hero { grid-template-columns: 1fr; padding-block: 38px; }
+      .visual { min-height: 330px; }
+      .science-art { width: 180px; }
+      h1 { letter-spacing: -.8px; }
+      .hero-note { font-size: .72rem; }
+      .quick-link { padding: 14px; gap: 9px; }
+      .quick-link strong { font-size: .76rem; }
+      .quick-link small { font-size: .65rem; }
+      .quick-link .mini-icon { width: 30px; height: 34px; flex-shrink: 0; }
+      .grid-3, .about, .faq-layout, .contact-grid { grid-template-columns: 1fr; }
+      .section-head { align-items: stretch; flex-direction: column; }
+      section.block { padding-block: 30px; }
+      .about, .home-service { padding: 25px; }
+      .home-service { align-items: stretch; flex-direction: column; }
+      .footer-inner { flex-direction: column; gap: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">رفتن به محتوای اصلی</a>
+  <div class="demo-bar">نسخه نمونه‌کار — تمام خدمات و فرایندهای این صفحه نمایشی هستند.</div>
+
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="اودلینک‌ز، صفحه اصلی">
+        <span class="logo-mark" aria-hidden="true">✚</span>
+        <span>
+          <strong>اودلینک‌ز</strong>
+          <small>آزمایشگاه تشخیص پزشکی · برند نمونه</small>
+        </span>
+      </a>
+
+      <button class="btn secondary menu-toggle"
+              id="menu-toggle"
+              aria-controls="main-nav"
+              aria-expanded="false">منو ☰</button>
+
+      <nav id="main-nav" aria-label="منوی اصلی">
+        <a href="#services">خدمات</a>
+        <a href="#tests">راهنمای آزمایش‌ها</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس</a>
+        <button class="btn secondary" data-open="partner-dialog">پنل همکاران</button>
+      </nav>
+
+      <button class="btn" data-open="result-dialog">دریافت جواب ↗</button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="badge"><span class="dot"></span>طراحی‌شده برای تجربه‌ای ساده‌تر</span>
+        <h1 id="hero-title">مسیر آگاهی از سلامت،<br><span>روشن‌تر از همیشه.</span></h1>
+        <p>
+          اطلاعات آزمایش‌ها، راهنمای مراجعه و خدمات آنلاین را
+          یک‌جا پیدا کنید؛ با تجربه‌ای ساده و در دسترس.
+        </p>
+        <div class="actions">
+          <button class="btn" data-open="booking-dialog" data-mode="visit">درخواست نوبت ←</button>
+          <a class="btn secondary" href="#tests">قبل از آزمایش بخوانید</a>
+        </div>
+        <div class="hero-note">راهنمای روشن · دسترسی آسان · طراحی با توجه به حریم خصوصی</div>
+      </div>
+
+      <div class="visual">
+        <div class="float-card top">
+          <span class="mini-icon" aria-hidden="true">✓</span>
+          <div><strong>همراه شما، پیش از مراجعه</strong><small>راهنمای آمادگی آزمایش‌ها</small></div>
+        </div>
+
+        <svg class="science-art" viewBox="0 0 240 280" role="img" aria-label="تصویرسازی لوله آزمایش">
+          <defs>
+            <linearGradient id="glass" x1="0" x2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#e4f9fa" stop-opacity=".65"/>
+            </linearGradient>
+            <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#27c4ac"/>
+              <stop offset="1" stop-color="#087e80"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="120" cy="259" rx="76" ry="13" fill="#102b35" opacity=".10"/>
+          <g transform="rotate(15 120 140)">
+            <path d="M80 42H160V205A40 40 0 0 1 80 205Z"
+                  fill="url(#glass)" stroke="#ffffff" stroke-width="4"/>
+            <path d="M87 125Q120 111 153 125V204A33 33 0 0 1 87 204Z"
+                  fill="url(#liquid)"/>
+            <rect x="73" y="20" width="94" height="35" rx="10" fill="#102b35"/>
+            <path d="M92 28V45M110 28V45M130 28V45M149 28V45"
+                  stroke="#4c747f" stroke-width="4"/>
+            <path d="M98 70V108" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="111" cy="151" r="6" fill="#ffffff" opacity=".55"/>
+            <circle cx="133" cy="181" r="9" fill="#ffffff" opacity=".25"/>
+            <circle cx="110" cy="207" r="4" fill="#ffffff" opacity=".6"/>
+          </g>
+          <circle cx="195" cy="93" r="18" fill="#ffffff" opacity=".75"/>
+          <path d="M187 93H203M195 85V101" stroke="#087e80" stroke-width="3"/>
+        </svg>
+
+        <div class="float-card bottom">
+          <span class="mini-icon" aria-hidden="true">↗</span>
+          <div><strong>خدمات، بدون سردرگمی</strong><small>از راهنمای آزمایش تا درخواست نوبت</small></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-links" aria-label="دسترسی سریع">
+      <button class="quick-link" data-open="result-dialog">
+        <span class="mini-icon" aria-hidden="true">▤</span>
+        <span><strong>جواب آزمایش</strong><small>معرفی مسیر دریافت امن</small></span>
+      </button>
+      <button class="quick-link" data-open="booking-dialog" data-mode="visit">
+        <span class="mini-icon" aria-hidden="true">◷</span>
+        <span><strong>درخواست نوبت</strong><small>فرم آزمایشی مراجعه</small></span>
+      </button>
+      <button class="quick-link" data-open="booking-dialog" data-mode="home">
+        <span class="mini-icon" aria-hidden="true">⌂</span>
+        <span><strong>نمونه‌گیری منزل</strong><small>آشنایی با فرایند درخواست</small></span>
+      </button>
+      <a class="quick-link" href="#insurance">
+        <span class="mini-icon" aria-hidden="true">+</span>
+        <span><strong>بیمه‌ها</strong><small>اطلاعات پوشش و مدارک</small></span>
+      </a>
+    </div>
+
+    <section class="block" id="services">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">خدمات آزمایشگاهی</span>
+          <h2>اطلاعات روشن، انتخاب آسان‌تر</h2>
+          <p>دسته‌بندی‌های پیشنهادی؛ خدمات واقعی باید توسط آزمایشگاه تأیید شوند.</p>
+        </div>
+        <a class="btn secondary" href="#tests">مشاهده راهنمای آزمایش‌ها ←</a>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <span class="service-number">۰۱ / HEMATOLOGY</span>
+          <h3>خون‌شناسی</h3>
+          <p>معرفی آزمایش‌های مرتبط با شمارش و بررسی سلول‌های خون.</p>
+          <span class="tag">شمارش سلول‌های خونی</span>
+        </article>
+        <article class="card">
+          <span class="service-number">۰۲ / BIOCHEMISTRY</span>
+          <h3>بیوشیمی بالینی</h3>
+          <p>راهنمای آزمایش‌های مرتبط با قند، چربی و شاخص‌های بیوشیمیایی.</p>
+          <span class="tag">شاخص‌های بیوشیمیایی</span>
+        </article>
+        <article class="card">
+          <span class="service-number">۰۳ / ENDOCRINOLOGY</span>
+          <h3>هورمون‌شناسی</h3>
+          <p>آشنایی با آزمایش‌های هورمونی و نکات مهم پیش از نمونه‌گیری.</p>
+          <span class="tag">بررسی شاخص‌های هورمونی</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" id="tests">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">پیش از مراجعه</span>
+          <h2>آزمایش خود را پیدا کنید</h2>
+          <p>راهنمای عمومی جایگزین دستور پزشک یا آزمایشگاه نیست.</p>
+        </div>
+        <div class="search-wrap">
+          <label for="test-search">جست‌وجوی نام یا کد آزمایش</label>
+          <input id="test-search" type="search" placeholder="مثلاً تیروئید یا CBC">
+        </div>
+      </div>
+      <div class="grid-3" id="test-list"></div>
+      <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="block" id="about">
+      <div class="about">
+        <div>
+          <span class="eyebrow">درباره اودلینک‌ز</span>
+          <h2>اعتماد، از شفافیت شروع می‌شود.</h2>
+          <p>
+            این بخش برای معرفی داستان آزمایشگاه، مسئول علمی و تیم طراحی شده است.
+            در نسخه واقعی، تصاویر محیط و اطلاعات تأییدشده مجموعه در این قسمت قرار می‌گیرند.
+          </p>
+          <a class="btn secondary" href="#contact">اطلاعات مراجعه ←</a>
+        </div>
+        <div class="about-features">
+          <div class="about-feature">
+            <strong>تیم و مسئول علمی</strong>
+            <span>محل نمایش نام، تخصص و صلاحیت حرفه‌ای تأییدشده.</span>
+          </div>
+          <div class="about-feature">
+            <strong>مجوزها و استانداردها</strong>
+            <span>محل درج مدارک معتبر؛ این دمو ادعای داشتن مجوز ندارد.</span>
+          </div>
+          <div class="about-feature">
+            <strong>حریم خصوصی مراجعه‌کننده</strong>
+            <span>در این نمونه هیچ اطلاعات پزشکی دریافت یا ذخیره نمی‌شود.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="insurance">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">راهنمای پوشش بیمه</span>
+          <h2>بیمه‌های طرف قرارداد</h2>
+          <p>جایگاه نمایش بیمه‌ها و شرایط استفاده از پوشش خدمات.</p>
+        </div>
+      </div>
+      <div class="insurance-list">
+        <span>بیمه پایه — نمونه</span>
+        <span>بیمه تکمیلی — نمونه</span>
+        <span>قرارداد سازمانی — نمونه</span>
+        <span>مدارک و شرایط پذیرش</span>
+      </div>
+      <p class="notice">این موارد قرارداد واقعی نیستند؛ فهرست نهایی باید با پذیرش آزمایشگاه تأیید شود.</p>
+    </section>
+
+    <section class="block">
+      <div class="home-service">
+        <div>
+          <span class="eyebrow">خدمات در محل</span>
+          <h2>یک مسیر ساده برای درخواست نمونه‌گیری</h2>
+          <p>نمونه رابط درخواست؛ محدوده خدمت و زمان حضور در نسخه واقعی تأیید می‌شود.</p>
+        </div>
+        <button class="btn dark" data-open="booking-dialog" data-mode="home">درخواست نمایشی ←</button>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <div class="faq-layout">
+        <div>
+          <span class="eyebrow">پرسش‌های متداول</span>
+          <h2>قبل از مراجعه،<br>با آگاهی بیشتر.</h2>
+          <p class="muted">پاسخ‌های کوتاه به پرسش‌های رایج درباره خدمات.</p>
+        </div>
+        <div>
+          <details>
+            <summary>آیا تمام آزمایش‌ها به ناشتایی نیاز دارند؟</summary>
+            <p>خیر. شرایط آمادگی به آزمایش‌های درخواست‌شده بستگی دارد. دستور پزشک و راهنمای تأییدشده آزمایشگاه را دنبال کنید.</p>
+          </details>
+          <details>
+            <summary>پیش از آزمایش داروهایم را قطع کنم؟</summary>
+            <p>داروها را بدون نظر پزشک قطع یا تغییر ندهید. مصرف دارو و مکمل را به پزشک و آزمایشگاه اطلاع دهید.</p>
+          </details>
+          <details>
+            <summary>جواب آزمایش چگونه دریافت می‌شود؟</summary>
+            <p>در نسخه عملیاتی، پس از احراز هویت و بررسی مجوز دسترسی. در این نمونه هیچ پرونده یا نتیجه واقعی وجود ندارد.</p>
+          </details>
+          <details>
+            <summary>آیا ثبت فرم به معنی تأیید نوبت است؟</summary>
+            <p>این سایت نمایشی است و نوبتی ثبت نمی‌کند. در سامانه واقعی نیز وضعیت درخواست و تأیید نهایی باید به‌صورت شفاف اعلام شود.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="contact">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">تماس و مراجعه</span>
+          <h2>پیداکردن ما باید ساده باشد.</h2>
+          <p>اطلاعات این بخش را پیش از انتشار برای یک آزمایشگاه واقعی تکمیل کنید.</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="card">
+          <div class="contact-item"><strong>آدرس</strong><span>[شهر، خیابان، پلاک و طبقه]</span></div>
+          <div class="contact-item"><strong>تماس با پذیرش</strong><span>[شماره تماس واقعی آزمایشگاه]</span></div>
+          <div class="contact-item"><strong>ساعات پذیرش و نمونه‌گیری</strong><span>[روزها و ساعات تأییدشده مجموعه]</span></div>
+        </div>
+        <div class="map-placeholder">
+          <div>
+            <strong>⌖ موقعیت آزمایشگاه</strong>
+            <p>نقشه و لینک مسیریابی پس از تعیین آدرس اضافه می‌شود.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>اودلینک‌ز / پروژه مفهومی طراحی وب‌سایت آزمایشگاه</span>
+      <span>طراحی و توسعه: [نام شما] · <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <dialog id="booking-dialog" aria-labelledby="booking-title">
+    <div class="dialog-header">
+      <h2 id="booking-title">درخواست نمایشی خدمات</h2>
+      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    </div>
+    <p class="demo-note">
+      این فرم فقط برای نمایش تعاملات است. اطلاعات هویتی وارد نکنید؛
+      چیزی ذخیره یا ارسال نمی‌شود و نوبتی رزرو نخواهد شد.
+    </p>
+    <form id="booking-form">
+      <div class="form-field">
+        <label for="service-mode">نوع درخواست</label>
+        <select id="service-mode">
+          <option value="visit">مراجعه حضوری</option>
+          <option value="home">نمونه‌گیری در منزل</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="visit-date">تاریخ پیشنهادی — انتخاب با تقویم مرورگر</label>
+        <input id="visit-date" type="date" required>
+      </div>
+      <div class="form-field">
+        <label for="visit-time">بازه پیشنهادی — ظرفیت‌ها واقعی نیستند</label>
+        <select id="visit-time" required>
+          <option value="">یک بازه انتخاب کنید</option>
+          <option>۸ تا ۱۰</option>
+          <option>۱۰ تا ۱۲</option>
+          <option>۱۲ تا ۱۴</option>
+        </select>
+      </div>
+      <button class="btn full" type="submit">آزمایش فرایند درخواست</button>
+      <div id="booking-feedback" class="feedback" role="status" hidden></div>
+    </form>
+  </dialog>
+
+  <dialog id="result-dialog" aria-labelledby="result-title">
+    <div class="dialog-header">
+      <h2 id="result-title">دریافت امن جواب آزمایش</h2>
+      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    </div>
+    <p class="demo-note">این بخش یک پیش‌نمایش است و به سامانه جواب‌دهی متصل نیست.</p>
+    <p class="muted">
+      در نسخه واقعی، دسترسی به نتیجه پس از احراز هویت و بررسی ارتباط حساب
+      با پرونده انجام می‌شود. کد ملی یا شماره پذیرش به‌تنهایی کافی نیست.
+    </p>
+    <ol>
+      <li>ورود از مسیر احراز هویت امن</li>
+      <li>بررسی مجوز دسترسی در سرور</li>
+      <li>نمایش نتایج مجاز و دانلود محافظت‌شده</li>
+    </ol>
+    <p class="notice">پیامک احتمالی فقط آماده‌شدن نتیجه را اعلام می‌کند، نه اطلاعات پزشکی را.</p>
+  </dialog>
+
+  <dialog id="partner-dialog" aria-labelledby="partner-title">
+    <div class="dialog-header">
+      <h2 id="partner-title">پنل پزشکان و مراکز همکار</h2>
+      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    </div>
+    <p class="demo-note">پیش‌نمایش امکانات؛ ورود عملیاتی در این نسخه وجود ندارد.</p>
+    <ul>
+      <li>حساب تأییدشده برای پزشک یا مرکز همکار</li>
+      <li>دسترسی فقط به پرونده‌های مجاز</li>
+      <li>ثبت و بررسی رویدادهای دسترسی</li>
+      <li>پیگیری درخواست‌های ارجاعی مجاز</li>
+    </ul>
+    <p class="muted">اجرای این بخش به زیرساخت امن و بررسی الزامات محرمانگی نیاز دارد.</p>
+  </dialog>
+
+  <dialog id="test-dialog" aria-labelledby="test-title">
+    <div class="dialog-header">
+      <h2 id="test-title"></h2>
+      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    </div>
+    <span id="test-code" class="tag"></span>
+    <p id="test-guide" style="margin-top:18px"></p>
+    <p><strong>نوع نمونه: </strong><span id="test-sample"></span></p>
+    <p class="muted">زمان آماده‌شدن نتیجه: پس از تأیید آزمایشگاه مشخص می‌شود.</p>
+    <p class="demo-note">راهنمای عمومی نمونه است؛ محتوای نهایی باید به تأیید مسئول علمی برسد.</p>
+  </dialog>
+
+  <script>
+    const tests = [
+      {
+        code: "CBC",
+        name: "شمارش کامل سلول‌های خون",
+        keywords: "خون کم خونی",
+        description: "آشنایی با آزمایش شمارش سلول‌های خونی.",
+        guide: "برای CBC به‌تنهایی معمولاً ناشتایی لازم نیست؛ اگر آزمایش‌های دیگری همراه آن درخواست شده، شرایط آن‌ها را از آزمایشگاه بپرسید.",
+        sample: "خون"
+      },
+      {
+        code: "FBS",
+        name: "قند خون ناشتا",
+        keywords: "قند دیابت گلوکز",
+        description: "راهنمای عمومی پیش از سنجش قند خون ناشتا.",
+        guide: "این آزمایش نیازمند ناشتایی است. مدت و شرایط دقیق را از آزمایشگاه دریافت کنید. در صورت مصرف داروی دیابت، درباره آمادگی با پزشک هماهنگ کنید و خودسرانه دارو را تغییر ندهید.",
+        sample: "خون"
+      },
+      {
+        code: "TSH",
+        name: "هورمون محرک تیروئید",
+        keywords: "تیروئید هورمون",
+        description: "اطلاعات اولیه درباره یکی از آزمایش‌های تیروئید.",
+        guide: "داروها و مکمل‌های مصرفی، به‌ویژه بیوتین، را اطلاع دهید؛ ممکن است بر برخی روش‌های آزمایش اثر بگذارند. هیچ دارو یا مکملی را بدون هماهنگی قطع نکنید.",
+        sample: "خون"
+      }
+    ];
+
+    const list = document.querySelector("#test-list");
+    const status = document.querySelector("#search-status");
+
+    function normalize(text) {
+      return text.replace(/ي/g, "ی").replace(/ك/g, "ک")
+        .replace(/\u200c/g, " ").toLowerCase().trim();
+    }
+
+    function renderTests(query = "") {
+      const filtered = tests.filter(test =>
+        normalize(`${test.code} ${test.name} ${test.keywords}`)
+          .includes(normalize(query))
+      );
+
+      list.replaceChildren();
+
+      filtered.forEach(test => {
+        const article = document.createElement("article");
+        article.className = "card test-card";
+
+        const code = document.createElement("span");
+        code.className = "test-code";
+        code.dir = "ltr";
+        code.textContent = test.code;
+
+        const heading = document.createElement("h3");
+        heading.textContent = test.name;
+
+        const description = document.createElement("p");
+        description.textContent = test.description;
+
+        const button = document.createElement("button");
+        button.className = "btn secondary";
+        button.textContent = "راهنمای آمادگی ←";
+        button.setAttribute("aria-label", `راهنمای آمادگی ${test.name}`);
+        button.addEventListener("click", () => {
+          document.querySelector("#test-title").textContent = test.name;
+          document.querySelector("#test-code").textContent = test.code;
+          document.querySelector("#test-guide").textContent = test.guide;
+          document.querySelector("#test-sample").textContent = test.sample;
+          openDialog("test-dialog");
+        });
+
+        article.append(code, heading, description, button);
+        list.append(article);
+      });
+
+      status.textContent = filtered.length
+        ? `${filtered.length.toLocaleString("fa-IR")} آزمایش نمونه نمایش داده می‌شود.`
+        : "آزمایشی پیدا نشد. نام دیگر یا کد کوتاه‌تر را امتحان کنید.";
+    }
+
+    function openDialog(id) {
+      const dialog = document.getElementById(id);
+      dialog.showModal();
+      document.body.classList.add("modal-open");
+    }
+
+    document.querySelectorAll("[data-open]").forEach(button => {
+      button.addEventListener("click", () => {
+        if (button.dataset.open === "booking-dialog") {
+          document.querySelector("#booking-form").reset();
+          document.querySelector("#service-mode").value = button.dataset.mode || "visit";
+          document.querySelector("#booking-feedback").hidden = true;
+        }
+        openDialog(button.dataset.open);
+      });
+    });
+
+    document.querySelectorAll("dialog").forEach(dialog => {
+      dialog.querySelector("[data-close]").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("close", () => {
+        document.body.classList.remove("modal-open");
+      });
+    });
+
+    const menuButton = document.querySelector("#menu-toggle");
+    const nav = document.querySelector("#main-nav");
+
+    function closeMenu() {
+      nav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+
+    menuButton.addEventListener("click", () => {
+      const expanded = nav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(expanded));
+    });
+
+    nav.querySelectorAll("a, button").forEach(item => {
+      item.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && nav.classList.contains("open")) {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
+
+    const dateInput = document.querySelector("#visit-date");
+
+    function localToday() {
+      const now = new Date();
+      const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+      return local.toISOString().slice(0, 10);
+    }
+
+    dateInput.min = localToday();
+    dateInput.addEventListener("input", () => dateInput.setCustomValidity(""));
+
+    document.querySelector("#booking-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (dateInput.value < localToday()) {
+        dateInput.setCustomValidity("لطفاً امروز یا یک تاریخ آینده را انتخاب کنید.");
+        dateInput.reportValidity();
+        return;
+      }
+
+      dateInput.setCustomValidity("");
+      const date = new Date(`${dateInput.value}T12:00:00`)
+        .toLocaleDateString("fa-IR");
+      const mode = document.querySelector("#service-mode").value === "home"
+        ? "نمونه‌گیری در منزل"
+        : "مراجعه حضوری";
+      const time = document.querySelector("#visit-time").value;
+      const feedback = document.querySelector("#booking-feedback");
+
+      feedback.textContent =
+        `پیش‌نمایش درخواست: ${mode}، ${date}، ساعت ${time}. ` +
+        "تعامل فرم با موفقیت اجرا شد؛ هیچ نوبتی ثبت و هیچ پیامکی ارسال نشده است.";
+      feedback.hidden = false;
+    });
+
+    document.querySelector("#test-search").addEventListener("input", event => {
+      renderTests(event.target.value);
+    });
+
+    document.querySelector("#year").textContent =
+      new Intl.DateTimeFormat("fa-IR", { year: "numeric" }).format(new Date());
+
+    renderTests();
+  </script>
+</body>
+</html>
