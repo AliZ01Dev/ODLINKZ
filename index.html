@@ -3,682 +3,798 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102b35">
-  <meta name="description"
-        content="نمونه طراحی وب‌سایت آزمایشگاه اودلینک‌ز؛ راهنمای آزمایش‌ها، خدمات و نوبت‌دهی نمایشی.">
-  <title>اودلینک‌ز | نمونه وب‌سایت آزمایشگاه</title>
+  <meta name="theme-color" content="#103e43">
+  <meta name="description" content="اودلینک‌ز؛ نمونه مفهومی وب‌سایت آزمایشگاه با طراحی فارسی و واکنش‌گرا.">
+  <title>اودلینک‌ز — مراقبت، از آگاهی شروع می‌شود</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Variable-font-face.css">
 
   <style>
     :root {
-      --bg: #f5f8f8;
-      --surface: #fff;
-      --ink: #102b35;
-      --muted: #526971;
-      --brand: #087e80;
-      --brand-dark: #056265;
-      --mint: #dff5ee;
-      --line: #dce7e8;
-      --radius: 24px;
-      --shadow: 0 18px 55px #102b350b;
+      --bg: #f6f9f8;
+      --white: #fff;
+      --ink: #153e43;
+      --muted: #587175;
+      --primary: #087d76;
+      --primary-dark: #06615c;
+      --mint: #e3f4ec;
+      --lime: #d8ef9e;
+      --line: #dce8e3;
+      --shadow: 0 18px 55px rgba(22, 65, 62, .055);
+      --radius: 26px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
     body {
       margin: 0;
+      font-family: Vazirmatn, Tahoma, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      font-family: Tahoma, Arial, sans-serif;
-      line-height: 1.9;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
     }
     body.modal-open { overflow: hidden; }
     button, input, select { font: inherit; }
-    button, a, input, select { -webkit-tap-highlight-color: transparent; }
     button { cursor: pointer; }
     a { color: inherit; text-decoration: none; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { line-height: 1.6; }
-    :focus-visible { outline: 3px solid #bb7400; outline-offset: 4px; }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { line-height: 1.55; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid #ad730b; outline-offset: 5px; }
+    ::selection { background: var(--lime); color: var(--ink); }
     [hidden] { display: none !important; }
 
-    .container { width: min(1160px, 92%); margin-inline: auto; }
-    .muted { color: var(--muted); }
-    .eyebrow {
-      display: inline-block;
-      font-size: .83rem;
-      font-weight: bold;
-      color: var(--brand-dark);
-      margin-bottom: 12px;
+    .container { width: min(1180px, 91%); margin-inline: auto; }
+    .icon {
+      width: 23px;
+      height: 23px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
     }
+    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .muted { color: var(--muted); }
+    .skip { position: fixed; top: -100px; right: 15px; z-index: 100; background: white; padding: 12px; }
+    .skip:focus { top: 15px; }
+
     .btn {
       display: inline-flex;
+      align-items: center;
       justify-content: center;
+      gap: 10px;
+      min-height: 49px;
+      padding: 11px 21px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: var(--primary);
+      color: white;
+      font-size: .88rem;
+      font-weight: 650;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px #087d7618; }
+    .btn .icon { width: 19px; height: 19px; }
+    .btn.light { background: white; border-color: var(--line); color: var(--ink); }
+    .btn.light:hover { background: #edf5f1; }
+    .btn.lime { background: var(--lime); color: var(--ink); }
+    .btn.lime:hover { background: #cbe78e; }
+    .btn.full { width: 100%; }
+    .text-link {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      min-height: 46px;
-      padding: 10px 20px;
-      border: 1px solid transparent;
-      border-radius: 13px;
-      background: var(--brand);
-      color: white;
-      font-weight: bold;
-      transition: background .2s, transform .2s;
+      color: var(--primary-dark);
+      font-size: .84rem;
+      font-weight: 650;
     }
-    .btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
-    .btn.secondary { background: white; color: var(--ink); border-color: var(--line); }
-    .btn.secondary:hover { background: #edf5f5; }
-    .btn.dark { background: var(--ink); }
-    .skip {
-      position: absolute;
-      top: -100px;
-      right: 16px;
-      z-index: 100;
-      background: white;
-      padding: 12px;
-    }
-    .skip:focus { top: 12px; }
+    .text-link .icon { width: 18px; }
+
     .demo-bar {
-      padding: 7px 16px;
-      text-align: center;
       background: var(--ink);
-      color: #e4f2f3;
-      font-size: .75rem;
+      color: #e1eee9;
+      text-align: center;
+      padding: 7px 14px;
+      font-size: .7rem;
     }
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: #ffffffed;
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(16px);
+      z-index: 30;
+      background: #f6f9f8ed;
+      border-bottom: 1px solid #dce8e3b0;
+      backdrop-filter: blur(18px);
     }
-    .header-inner {
-      min-height: 83px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
+    .header-row { min-height: 87px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
+    .brand-mark {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      background: var(--primary); color: white;
+      border-radius: 16px 16px 5px 16px;
+      box-shadow: 0 8px 18px #087d7620;
     }
-    .logo { display: flex; align-items: center; gap: 10px; }
-    .logo-mark {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: var(--brand);
-      color: white;
-      font-size: 29px;
-    }
-    .logo strong { display: block; font-size: 1.25rem; line-height: 1.4; }
-    .logo small { display: block; color: var(--muted); font-size: .66rem; }
-    nav { display: flex; gap: 23px; font-size: .85rem; }
-    nav a:hover { color: var(--brand); }
-    .menu-toggle { display: none; }
+    .brand-mark .icon { width: 29px; height: 29px; }
+    .brand strong { display: block; font-size: 1.4rem; letter-spacing: -.8px; line-height: 1.3; }
+    .brand small { color: var(--muted); font-size: .63rem; }
+    nav { display: flex; align-items: center; gap: 27px; font-size: .83rem; font-weight: 550; }
+    nav a { position: relative; padding-block: 8px; }
+    nav a:hover { color: var(--primary); }
+    nav a::after { content: ""; position: absolute; bottom: 0; right: 0; width: 0; height: 2px; background: var(--primary); transition: width .2s; }
+    nav a:hover::after { width: 100%; }
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .menu-button { display: none; }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 58px;
       align-items: center;
-      gap: 65px;
-      padding-block: 75px 60px;
+      padding-block: 68px 48px;
     }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 13px;
-      border: 1px solid #c9e7dc;
-      border-radius: 30px;
-      background: #eaf8f1;
-      color: #246047;
-      font-size: .76rem;
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid #cde4d9;
+      background: #edf7f0;
+      border-radius: 50px;
+      font-size: .73rem;
+      color: #32644d;
     }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #25825d; }
-    h1 { font-size: clamp(2rem, 4.2vw, 3.6rem); margin-block: 20px; letter-spacing: -1.7px; }
-    h1 span { color: var(--brand); }
-    .hero-copy > p { color: var(--muted); max-width: 510px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
-    .hero-note { margin-top: 22px; font-size: .78rem; color: var(--muted); }
+    .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #45855a; box-shadow: 0 0 0 4px #45855a12; }
+    h1 { font-size: clamp(2.4rem, 4.6vw, 3.9rem); font-weight: 850; letter-spacing: -2px; margin-block: 21px; }
+    .highlight { position: relative; display: inline-block; color: var(--primary); }
+    .highlight::after {
+      content: ""; position: absolute; right: 0; bottom: 6px;
+      width: 100%; height: 10px; background: #d8ef9e8c; z-index: -1; border-radius: 100%;
+    }
+    .hero-copy { position: relative; z-index: 1; }
+    .hero-copy > p { color: var(--muted); max-width: 475px; font-size: .97rem; line-height: 2.1; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 27px; }
+    .hero-caption { display: flex; gap: 9px; align-items: center; font-size: .74rem; color: var(--muted); margin-top: 24px; }
+    .hero-caption .icon { color: var(--primary); width: 19px; }
 
-    .visual {
+    .hero-art {
       position: relative;
-      min-height: 430px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid #d1e5e4;
-      border-radius: 38px;
+      min-height: 475px;
+      border: 1px solid #d3e5dc;
+      border-radius: 36px 100px 36px 36px;
       background:
-        radial-gradient(circle at 20% 15%, #c5f4df, transparent 48%),
-        linear-gradient(145deg, #e3f2ef, #d8e9ee);
+        radial-gradient(ellipse at 15% 18%, #ebf7d5, transparent 50%),
+        linear-gradient(145deg, #e3f0e8, #cce7df);
+      isolation: isolate;
     }
-    .visual::before, .visual::after {
-      content: "";
-      position: absolute;
-      border: 1px solid #93bebb70;
-      border-radius: 50%;
-      width: 330px;
-      height: 330px;
+    .art-grid { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; opacity: .35; background-image: radial-gradient(#72a998 1px, transparent 1px); background-size: 20px 20px; }
+    .orbit { position: absolute; width: 320px; height: 320px; border: 1px solid #ffffffa0; border-radius: 50%; inset: 70px 0 0; margin-inline: auto; }
+    .orbit.two { width: 245px; height: 245px; top: 107px; border-style: dashed; border-color: #7fb7a680; }
+    .lab-illustration { position: absolute; width: 85%; height: 85%; inset: 5% 7%; filter: drop-shadow(0 20px 20px #1d65551a); }
+    .floating-card {
+      position: absolute; z-index: 2;
+      display: flex; align-items: center; gap: 11px;
+      background: #ffffffed; border: 1px solid #fff;
+      padding: 13px 16px; border-radius: 19px;
+      box-shadow: 0 16px 35px #214c3f0c;
+      backdrop-filter: blur(10px);
     }
-    .visual::after { width: 250px; height: 250px; }
-    .science-art { position: relative; z-index: 1; width: 220px; }
-    .float-card {
-      position: absolute;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 17px;
-      border: 1px solid #ffffff;
-      border-radius: 17px;
-      background: #ffffffed;
-      box-shadow: var(--shadow);
-      font-size: .8rem;
-    }
-    .float-card small { display: block; color: var(--muted); }
-    .float-card.top { top: 30px; right: 20px; }
-    .float-card.bottom { bottom: 32px; left: 20px; }
-    .mini-icon {
-      display: grid;
-      place-items: center;
-      width: 37px;
-      height: 37px;
-      border-radius: 12px;
-      background: var(--mint);
-      color: var(--brand-dark);
-      font-size: 1.2rem;
-    }
-
-    .quick-links {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-bottom: 36px;
-    }
-    .quick-link {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 21px;
-      text-align: right;
-      border: 1px solid var(--line);
-      border-radius: 19px;
-      background: white;
-      color: var(--ink);
-      transition: border-color .2s, transform .2s;
-    }
-    .quick-link:hover { border-color: var(--brand); transform: translateY(-3px); }
-    .quick-link strong { display: block; font-size: .88rem; }
-    .quick-link small { color: var(--muted); font-size: .71rem; }
-    section.block { padding-block: 48px; }
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 26px;
-    }
-    .section-head h2 { margin-bottom: 7px; font-size: clamp(1.4rem, 3vw, 2rem); }
-    .section-head p { margin-bottom: 0; color: var(--muted); font-size: .88rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
-    .card {
-      background: white;
-      padding: 27px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .service-number {
-      display: inline-block;
-      color: var(--brand);
-      font-size: .8rem;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-    .card h3 { font-size: 1.08rem; margin-bottom: 10px; }
-    .card p { font-size: .86rem; color: var(--muted); }
-    .tag {
-      display: inline-block;
-      padding: 3px 10px;
-      font-size: .7rem;
-      border-radius: 8px;
-      background: #eff6f6;
-      color: var(--brand-dark);
-    }
-    .search-wrap { min-width: min(100%, 290px); }
-    .search-wrap label { display: block; font-size: .75rem; margin-bottom: 5px; }
-    input, select {
-      width: 100%;
-      min-height: 47px;
-      padding: 10px 13px;
-      border: 1px solid #bacdd0;
-      border-radius: 12px;
-      background: white;
-      color: var(--ink);
-    }
-    input:focus, select:focus { border-color: var(--brand); }
-    .test-card { display: flex; flex-direction: column; align-items: start; }
-    .test-code { font-size: 1.3rem; color: var(--brand); font-weight: bold; margin-bottom: 10px; }
-    .test-card .btn { margin-top: auto; font-size: .78rem; min-height: 40px; }
-    .search-status { color: var(--muted); font-size: .8rem; margin-top: 16px; }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 38px;
-      border-radius: 30px;
-      background: var(--ink);
-      color: white;
-    }
-    .about p { color: #c3d7dc; font-size: .9rem; }
-    .about .eyebrow { color: #8ee0cd; }
-    .about-features { display: grid; gap: 12px; }
-    .about-feature {
-      padding: 18px;
-      border: 1px solid #ffffff25;
-      border-radius: 16px;
-      background: #ffffff08;
-    }
-    .about-feature strong { display: block; margin-bottom: 4px; font-size: .9rem; }
-    .about-feature span { color: #c3d7dc; font-size: .8rem; }
-
-    .insurance-list { display: flex; flex-wrap: wrap; gap: 12px; }
-    .insurance-list span {
-      padding: 16px 23px;
-      background: white;
-      border: 1px solid var(--line);
+    .floating-card.top { top: 29px; right: -19px; animation: float 7s ease-in-out infinite; }
+    .floating-card.bottom { bottom: 28px; left: -17px; animation: float 7s ease-in-out 2s infinite; }
+    .floating-card strong { display: block; font-size: .8rem; }
+    .floating-card small { color: var(--muted); font-size: .65rem; }
+    .icon-box {
+      display: grid; place-items: center;
+      width: 47px; height: 47px;
       border-radius: 15px;
-      font-size: .85rem;
-    }
-    .notice { font-size: .78rem; color: var(--muted); margin-top: 15px; }
-
-    .home-service {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      padding: 36px;
-      border-radius: 26px;
-      background: var(--mint);
-      border: 1px solid #c3e9da;
-    }
-    .home-service h2 { margin-bottom: 10px; }
-    .home-service p { color: #395e54; margin-bottom: 0; }
-    .home-service .btn { flex-shrink: 0; }
-
-    .faq-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 40px; }
-    details {
-      margin-bottom: 12px;
-      padding: 18px 22px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-    }
-    summary { cursor: pointer; font-size: .9rem; font-weight: bold; }
-    details p { margin: 13px 0 0; color: var(--muted); font-size: .85rem; }
-
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .contact-item { padding-block: 12px; border-bottom: 1px solid var(--line); }
-    .contact-item:last-child { border: 0; }
-    .contact-item strong { display: block; font-size: .8rem; }
-    .contact-item span { font-size: .88rem; color: var(--muted); }
-    .map-placeholder {
-      min-height: 270px;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background-color: #e7efed;
-      background-image:
-        linear-gradient(#ffffff90 2px, transparent 2px),
-        linear-gradient(90deg, #ffffff90 2px, transparent 2px);
-      background-size: 38px 38px;
-      padding: 25px;
-    }
-    .map-placeholder div { background: #ffffffee; border-radius: 18px; padding: 23px; }
-    .map-placeholder p { margin: 6px 0 0; font-size: .8rem; color: var(--muted); }
-    footer { margin-top: 35px; padding: 29px 0; border-top: 1px solid var(--line); }
-    .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: .77rem; color: var(--muted); }
-
-    dialog {
-      width: min(520px, 92vw);
-      max-height: 88dvh;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      color: var(--ink);
-      box-shadow: 0 30px 100px #0003;
-    }
-    dialog::backdrop { background: #08212cbc; backdrop-filter: blur(5px); }
-    .dialog-header { display: flex; justify-content: space-between; align-items: start; gap: 15px; }
-    .dialog-header h2 { font-size: 1.25rem; }
-    .close {
-      width: 40px;
-      height: 40px;
+      background: var(--mint); color: var(--primary);
       flex-shrink: 0;
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: 11px;
-      font-size: 1.5rem;
-      color: var(--ink);
     }
-    .form-field { display: grid; gap: 5px; margin-bottom: 15px; }
-    .form-field label { font-size: .84rem; }
-    .demo-note {
-      padding: 12px;
-      border-radius: 12px;
-      background: #fff5db;
-      color: #6d5113;
-      font-size: .78rem;
-      margin-bottom: 20px;
-    }
-    .feedback {
-      margin-top: 16px;
-      padding: 13px;
-      background: var(--mint);
-      color: #185846;
-      border-radius: 12px;
-      font-size: .85rem;
-    }
-    .full { width: 100%; }
+    .art-label { position: absolute; bottom: 28px; right: 24px; font-size: .63rem; color: #456b5e; letter-spacing: 2px; writing-mode: vertical-rl; }
+    @keyframes float { 50% { transform: translateY(-9px); } }
 
-    @media (max-width: 960px) {
-      nav { gap: 13px; font-size: .78rem; }
-      .header-inner > .btn { display: none; }
-      .hero { gap: 30px; }
-      .quick-links { grid-template-columns: repeat(2, 1fr); }
-      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .quick-card {
+      display: flex; align-items: center; gap: 13px;
+      text-align: right; padding: 20px 17px;
+      border: 1px solid var(--line); border-radius: 21px;
+      background: white; color: var(--ink);
+      box-shadow: var(--shadow); transition: transform .2s, border-color .2s;
     }
-    @media (max-width: 680px) {
-      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
-      .menu-toggle { display: inline-flex; padding: 8px 12px; }
-      nav { display: none; width: 100%; padding: 16px 0; flex-wrap: wrap; gap: 20px; }
+    .quick-card:hover { transform: translateY(-5px); border-color: #7cb9a5; }
+    .quick-card strong { display: block; font-size: .86rem; }
+    .quick-card small { display: block; color: var(--muted); font-size: .67rem; }
+    .quick-card > .icon { width: 16px; margin-right: auto; color: #6f8b84; }
+    .quick-card:nth-child(2) .icon-box { background: #edf0fb; color: #5f6fa2; }
+    .quick-card:nth-child(3) .icon-box { background: #fcf1de; color: #92651e; }
+    .quick-card:nth-child(4) .icon-box { background: #f4edf7; color: #886398; }
+
+    .section { padding-block: 54px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 27px; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--primary); font-size: .76rem; font-weight: 650; margin-bottom: 8px; }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+    .section-heading h2, .section-title { font-size: clamp(1.5rem, 2.7vw, 2rem); font-weight: 800; letter-spacing: -.7px; }
+    .section-heading p { margin-top: 9px; color: var(--muted); font-size: .85rem; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
+    .service-card {
+      position: relative; overflow: hidden;
+      padding: 28px; background: white;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+    .service-top > span { font-size: .72rem; color: #738c84; letter-spacing: 2px; }
+    .service-card .icon-box { width: 55px; height: 55px; border-radius: 18px; }
+    .service-card h3 { font-size: 1.13rem; margin-bottom: 9px; }
+    .service-card p { font-size: .84rem; color: var(--muted); margin-bottom: 22px; }
+    .service-card.featured { background: var(--ink); color: white; border-color: var(--ink); }
+    .service-card.featured .icon-box { background: #ffffff14; color: var(--lime); }
+    .service-card.featured p, .service-card.featured .service-top > span { color: #c3d7d1; }
+    .service-card.featured .text-link { color: var(--lime); }
+    .service-card.featured::after { content: ""; position: absolute; width: 160px; height: 160px; border: 30px solid #ffffff04; border-radius: 50%; left: -65px; bottom: -65px; pointer-events: none; }
+
+    .tests-panel { padding: 34px; border: 1px solid var(--line); border-radius: 32px; background: #edf4f0; }
+    .search-field { position: relative; width: 300px; max-width: 100%; }
+    .search-field .icon { position: absolute; right: 15px; top: 14px; width: 20px; color: var(--muted); }
+    .search-field input { padding-right: 45px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    input, select {
+      width: 100%; min-height: 49px; border: 1px solid #c7d9d0;
+      border-radius: 13px; padding: 10px 13px;
+      background: white; color: var(--ink);
+    }
+    input::placeholder { color: #70847c; font-size: .8rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 22px; }
+    .filter { padding: 8px 16px; border: 1px solid #d4e2d9; border-radius: 50px; background: transparent; color: var(--muted); font-size: .77rem; }
+    .filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: white; }
+    .tests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .test-card { display: flex; flex-direction: column; background: white; border: 1px solid #deebe3; border-radius: 21px; padding: 22px; }
+    .test-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+    .test-code { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
+    .tag { display: inline-block; font-size: .64rem; border-radius: 7px; padding: 3px 8px; background: #eef5f0; color: #4b6e5a; }
+    .test-card h3 { font-size: .97rem; margin-bottom: 8px; }
+    .test-card p { font-size: .78rem; color: var(--muted); margin-bottom: 20px; }
+    .test-card button { margin-top: auto; align-self: start; border: 0; padding: 0; background: transparent; min-height: 35px; }
+    .search-status { min-height: 24px; font-size: .74rem; color: var(--muted); margin-top: 17px; }
+
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 65px; }
+    .about-visual { position: relative; padding: 32px; border: 1px solid var(--line); background: #e8f0e7; border-radius: 30px; }
+    .report-card { position: relative; padding: 25px; border-radius: 22px; background: white; box-shadow: 0 20px 45px #2446330b; transform: rotate(-3deg); }
+    .report-top { display: flex; align-items: center; gap: 11px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .report-top strong { display: block; font-size: .88rem; }
+    .report-top small { font-size: .69rem; color: var(--muted); }
+    .report-row { padding-top: 18px; display: flex; justify-content: space-between; gap: 10px; font-size: .76rem; }
+    .report-row span:last-child { color: var(--primary); }
+    .report-line { margin-top: 8px; height: 7px; border-radius: 20px; background: #edf3ee; overflow: hidden; }
+    .report-line span { display: block; height: 100%; background: #92cdb7; border-radius: inherit; }
+    .report-foot { display: flex; align-items: center; gap: 8px; padding: 11px; margin-top: 23px; background: #f1f7ed; border-radius: 12px; font-size: .7rem; color: #456340; }
+    .report-foot .icon { width: 18px; }
+    .about-copy > p { margin-block: 16px 24px; color: var(--muted); font-size: .91rem; }
+    .check-item { display: flex; gap: 11px; margin-top: 17px; align-items: start; }
+    .check-item > .icon { padding: 4px; width: 26px; height: 26px; background: var(--mint); color: var(--primary); border-radius: 50%; }
+    .check-item strong { font-size: .88rem; }
+    .check-item p { font-size: .78rem; color: var(--muted); margin-top: 3px; }
+
+    .insurance-box { display: flex; align-items: center; gap: 30px; padding: 25px 28px; border-block: 1px solid var(--line); }
+    .insurance-title { flex-shrink: 0; }
+    .insurance-title strong { display: block; font-size: .95rem; }
+    .insurance-title small { font-size: .7rem; color: var(--muted); }
+    .insurance-items { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 16px; flex: 1; }
+    .insurance-items span { display: flex; align-items: center; gap: 8px; font-size: .81rem; color: var(--muted); }
+    .insurance-items .icon { color: #729287; }
+
+    .home-banner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; padding: 40px 44px; border-radius: 30px; background: var(--ink); color: white; position: relative; overflow: hidden; }
+    .home-banner::before { content: ""; position: absolute; width: 260px; height: 260px; border: 45px solid #ffffff05; border-radius: 50%; left: -60px; top: -90px; }
+    .home-content { display: flex; align-items: center; gap: 23px; position: relative; }
+    .home-content > .icon-box { width: 72px; height: 72px; border-radius: 23px; background: #ffffff12; color: var(--lime); }
+    .home-content > .icon-box .icon { width: 34px; height: 34px; }
+    .home-banner h2 { font-size: 1.45rem; margin-bottom: 8px; }
+    .home-banner p { color: #c7dcd4; font-size: .85rem; max-width: 560px; }
+    .home-banner .btn { position: relative; }
+
+    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+    .faq-intro > p { font-size: .87rem; color: var(--muted); margin-block: 15px 24px; }
+    details { border-bottom: 1px solid var(--line); }
+    summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 15px; cursor: pointer; padding: 21px 0; font-size: .91rem; font-weight: 600; }
+    summary::-webkit-details-marker { display: none; }
+    summary .icon { width: 20px; transition: transform .2s; }
+    details[open] summary .icon { transform: rotate(45deg); }
+    details p { font-size: .84rem; color: var(--muted); padding: 0 0 20px 25px; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .contact-card { padding: 28px; border: 1px solid var(--line); border-radius: 26px; background: white; }
+    .contact-row { display: flex; gap: 14px; align-items: center; padding: 15px 0; }
+    .contact-row + .contact-row { border-top: 1px solid var(--line); }
+    .contact-row strong { display: block; font-size: .83rem; }
+    .contact-row p { color: var(--muted); font-size: .78rem; margin-top: 4px; }
+    .map {
+      position: relative; display: grid; place-items: center; overflow: hidden;
+      min-height: 290px; border: 1px solid var(--line); border-radius: 26px;
+      background: #e4ece4;
+    }
+    .map::before {
+      content: ""; position: absolute; inset: -80px; transform: rotate(-23deg);
+      background-image: linear-gradient(90deg, transparent 46%, #ffffffb5 46%, #ffffffb5 54%, transparent 54%), linear-gradient(transparent 46%, #ffffffb5 46%, #ffffffb5 54%, transparent 54%);
+      background-size: 95px 95px;
+    }
+    .map-label { position: relative; text-align: center; width: 82%; padding: 23px; background: #ffffffed; border: 1px solid white; border-radius: 20px; box-shadow: var(--shadow); }
+    .map-label .icon-box { margin: 0 auto 10px; }
+    .map-label strong { font-size: .92rem; }
+    .map-label p { font-size: .75rem; color: var(--muted); margin-top: 7px; }
+
+    footer { margin-top: 35px; border-top: 1px solid var(--line); background: #edf3ef; padding: 35px 0 22px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-bottom: 25px; }
+    .footer-top p { max-width: 400px; font-size: .79rem; color: var(--muted); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; padding-top: 20px; border-top: 1px solid #d4e1d8; color: var(--muted); font-size: .71rem; }
+    .footer-button { border: 0; background: transparent; color: var(--primary-dark); font-size: .8rem; display: inline-flex; gap: 8px; align-items: center; }
+
+    dialog { width: min(530px, 92vw); max-height: 88dvh; overflow-y: auto; padding: 28px; border: 1px solid var(--line); border-radius: 25px; color: var(--ink); box-shadow: 0 30px 120px #0003; }
+    dialog::backdrop { background: #102f37a8; backdrop-filter: blur(7px); }
+    .dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 19px; }
+    .dialog-head h2 { font-size: 1.25rem; }
+    .close { display: grid; place-items: center; width: 37px; height: 37px; flex-shrink: 0; border: 1px solid var(--line); border-radius: 11px; background: white; color: var(--ink); }
+    .close .icon { width: 19px; }
+    .notice { padding: 12px 14px; border-radius: 12px; background: #fff5dc; color: #76551e; font-size: .77rem; margin-bottom: 18px; }
+    .form-field { display: grid; gap: 6px; margin-bottom: 16px; }
+    .form-field label { font-size: .83rem; font-weight: 550; }
+    .form-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .feedback { background: var(--mint); color: #265c46; padding: 14px; margin-top: 17px; border-radius: 12px; font-size: .82rem; }
+    .dialog-copy { color: var(--muted); font-size: .87rem; line-height: 2; }
+    .dialog-copy li { margin-bottom: 10px; }
+    .dialog-meta { margin-block: 17px; padding: 13px; border: 1px solid var(--line); border-radius: 12px; font-size: .81rem; }
+    .dialog-meta p + p { margin-top: 7px; }
+
+    @media (min-width: 1600px) { .container { width: min(1250px, 88%); } }
+    @media (max-width: 1050px) {
+      nav { gap: 16px; font-size: .76rem; }
+      .hero { gap: 35px; }
+      .hero-art { min-height: 425px; }
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 35px; }
+      .floating-card.top { right: -10px; }
+      .floating-card.bottom { left: -10px; }
+      .header-actions > .btn { padding-inline: 13px; }
+    }
+    @media (max-width: 780px) {
+      .header-row { min-height: 76px; flex-wrap: wrap; gap: 0; }
+      .menu-button { display: inline-flex; padding: 10px; min-height: 43px; }
+      .header-actions > .btn:not(.menu-button) { min-height: 43px; font-size: .76rem; }
+      nav { display: none; order: 3; width: 100%; padding-block: 18px; flex-wrap: wrap; gap: 20px; }
       nav.open { display: flex; }
-      .hero { grid-template-columns: 1fr; padding-block: 38px; }
-      .visual { min-height: 330px; }
-      .science-art { width: 180px; }
-      h1 { letter-spacing: -.8px; }
-      .hero-note { font-size: .72rem; }
-      .quick-link { padding: 14px; gap: 9px; }
-      .quick-link strong { font-size: .76rem; }
-      .quick-link small { font-size: .65rem; }
-      .quick-link .mini-icon { width: 30px; height: 34px; flex-shrink: 0; }
-      .grid-3, .about, .faq-layout, .contact-grid { grid-template-columns: 1fr; }
-      .section-head { align-items: stretch; flex-direction: column; }
-      section.block { padding-block: 30px; }
-      .about, .home-service { padding: 25px; }
-      .home-service { align-items: stretch; flex-direction: column; }
-      .footer-inner { flex-direction: column; gap: 7px; }
+      .hero { grid-template-columns: 1fr; padding-top: 35px; gap: 35px; }
+      .hero-copy { max-width: 600px; }
+      .hero-art { min-height: 400px; width: min(100%, 530px); margin-inline: auto; }
+      .lab-illustration { width: 78%; right: 11%; }
+      h1 { font-size: clamp(2.35rem, 7.5vw, 3.5rem); }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 24px; }
+      .service-top { margin-bottom: 17px; }
+      .tests-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-heading { align-items: start; flex-direction: column; gap: 18px; }
+      .search-field { width: 100%; }
+      .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 30px; }
+      .about-visual { max-width: 480px; width: 100%; margin-inline: auto; }
+      .about-copy { order: -1; }
+      .insurance-box { flex-direction: column; align-items: start; gap: 20px; }
+      .insurance-items { justify-content: start; }
+      .home-banner { grid-template-columns: 1fr; padding: 28px; gap: 23px; }
+      .home-banner .btn { justify-self: start; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { align-items: start; flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .brand strong { font-size: 1.2rem; }
+      .brand small { font-size: .55rem; }
+      .brand-mark { width: 39px; height: 39px; border-radius: 13px 13px 5px 13px; }
+      .header-actions { gap: 6px; }
+      .header-actions > .btn:not(.menu-button) .icon { display: none; }
+      .hero-copy > p { font-size: .88rem; }
+      .hero-art { min-height: 350px; border-top-left-radius: 70px; }
+      .orbit { width: 260px; height: 260px; top: 45px; }
+      .orbit.two { width: 205px; height: 205px; top: 73px; }
+      .floating-card { padding: 9px 11px; gap: 8px; }
+      .floating-card strong { font-size: .7rem; }
+      .floating-card small { font-size: .59rem; }
+      .floating-card .icon-box { width: 35px; height: 35px; border-radius: 11px; }
+      .floating-card.top { right: -5px; top: 20px; }
+      .floating-card.bottom { left: -5px; bottom: 18px; }
+      .quick-grid { gap: 10px; }
+      .quick-card { padding: 14px 10px; gap: 8px; border-radius: 17px; }
+      .quick-card .icon-box { width: 35px; height: 38px; border-radius: 11px; }
+      .quick-card strong { font-size: .73rem; }
+      .quick-card small { font-size: .59rem; }
+      .quick-card > .icon { display: none; }
+      .section { padding-block: 35px; }
+      .tests-panel { padding: 23px 17px; border-radius: 25px; }
+      .tests-grid { grid-template-columns: 1fr; }
+      .home-content { align-items: start; gap: 14px; }
+      .home-content > .icon-box { width: 45px; height: 45px; border-radius: 14px; }
+      .home-content > .icon-box .icon { width: 25px; height: 25px; }
+      .home-banner h2 { font-size: 1.18rem; }
+      .home-banner p { font-size: .78rem; }
+      .footer-bottom { flex-direction: column; }
+      .form-pair { grid-template-columns: 1fr; gap: 0; }
+      dialog { padding: 23px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { transition: none !important; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 
 <body>
+  <!-- آیکون‌های داخلی؛ بدون کتابخانه خارجی -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-logo" viewBox="0 0 24 24">
+        <path d="M8 3c0 6 8 12 8 18M16 3c0 6-8 12-8 18M8.5 5h7M10 9h4M10 15h4M8.5 19h7"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 11h18M8 15h2M14 15h2M8 18h2"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v11h14V9M9 20v-7h6v7"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s-7 8-7 12a7 7 0 0 0 14 0c0-4-7-12-7-12zM8 15a4 4 0 0 0 4 4"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v7L4 19a1.3 1.3 0 0 0 1 2h14a1.3 1.3 0 0 0 1-2l-6-9V3M7 15h10"/></symbol>
+      <symbol id="i-dna" viewBox="0 0 24 24"><path d="M7 3c0 8 10 10 10 18M17 3C17 11 7 13 7 21M8 5h8M10 9h4M10 15h4M8 19h8"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="m5 3 4 1 1 5-3 2a14 14 0 0 0 6 6l2-3 5 1 1 4c-1 4-7 2-11-1S1 6 5 3z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 5v2"/></symbol>
+    </defs>
+  </svg>
+
   <a class="skip" href="#main">رفتن به محتوای اصلی</a>
-  <div class="demo-bar">نسخه نمونه‌کار — تمام خدمات و فرایندهای این صفحه نمایشی هستند.</div>
+  <div class="demo-bar">پروژه مفهومی و نمونه‌کار — اطلاعات و خدمات این سایت نمایشی هستند.</div>
 
   <header>
-    <div class="container header-inner">
-      <a class="logo" href="#" aria-label="اودلینک‌ز، صفحه اصلی">
-        <span class="logo-mark" aria-hidden="true">✚</span>
-        <span>
-          <strong>اودلینک‌ز</strong>
-          <small>آزمایشگاه تشخیص پزشکی · برند نمونه</small>
-        </span>
+    <div class="container header-row">
+      <a class="brand" href="#" aria-label="اودلینک‌ز، صفحه اصلی">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"/></svg></span>
+        <span><strong>اودلینک‌ز</strong><small>آزمایشگاه تشخیص پزشکی · نمونه</small></span>
       </a>
 
-      <button class="btn secondary menu-toggle"
-              id="menu-toggle"
-              aria-controls="main-nav"
-              aria-expanded="false">منو ☰</button>
-
       <nav id="main-nav" aria-label="منوی اصلی">
-        <a href="#services">خدمات</a>
+        <a href="#services">خدمات آزمایشگاه</a>
         <a href="#tests">راهنمای آزمایش‌ها</a>
         <a href="#about">درباره ما</a>
-        <a href="#contact">تماس</a>
-        <button class="btn secondary" data-open="partner-dialog">پنل همکاران</button>
+        <a href="#contact">تماس با ما</a>
       </nav>
 
-      <button class="btn" data-open="result-dialog">دریافت جواب ↗</button>
+      <div class="header-actions">
+        <button class="btn" data-open="result-dialog">
+          <svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>
+          دریافت جواب
+        </button>
+        <button class="btn light menu-button" id="menu-button"
+                aria-label="باز کردن منو" aria-controls="main-nav" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main" class="container">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <span class="badge"><span class="dot"></span>طراحی‌شده برای تجربه‌ای ساده‌تر</span>
-        <h1 id="hero-title">مسیر آگاهی از سلامت،<br><span>روشن‌تر از همیشه.</span></h1>
+        <span class="pill"><span class="pill-dot"></span>یک تجربه روشن‌تر از خدمات آزمایشگاهی</span>
+        <h1 id="hero-title">مراقبت، از<br><span class="highlight">آگاهی</span> شروع می‌شود.</h1>
         <p>
-          اطلاعات آزمایش‌ها، راهنمای مراجعه و خدمات آنلاین را
-          یک‌جا پیدا کنید؛ با تجربه‌ای ساده و در دسترس.
+          از آمادگی پیش از آزمایش تا مسیر دریافت نتیجه؛
+          هر چیزی که برای مراجعه‌ای آرام‌تر و آگاهانه‌تر نیاز دارید، اینجاست.
         </p>
-        <div class="actions">
-          <button class="btn" data-open="booking-dialog" data-mode="visit">درخواست نوبت ←</button>
-          <a class="btn secondary" href="#tests">قبل از آزمایش بخوانید</a>
+        <div class="hero-actions">
+          <button class="btn" data-open="booking-dialog" data-mode="visit">
+            درخواست نوبت
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </button>
+          <a class="btn light" href="#tests">راهنمای پیش از آزمایش</a>
         </div>
-        <div class="hero-note">راهنمای روشن · دسترسی آسان · طراحی با توجه به حریم خصوصی</div>
+        <div class="hero-caption">
+          <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+          طراحی با توجه به آسودگی و حریم خصوصی مراجعه‌کننده
+        </div>
       </div>
 
-      <div class="visual">
-        <div class="float-card top">
-          <span class="mini-icon" aria-hidden="true">✓</span>
-          <div><strong>همراه شما، پیش از مراجعه</strong><small>راهنمای آمادگی آزمایش‌ها</small></div>
-        </div>
+      <div class="hero-art">
+        <div class="art-grid" aria-hidden="true"></div>
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="orbit two" aria-hidden="true"></div>
 
-        <svg class="science-art" viewBox="0 0 240 280" role="img" aria-label="تصویرسازی لوله آزمایش">
+        <svg class="lab-illustration" viewBox="0 0 440 440" role="img" aria-label="تصویرسازی اختصاصی ابزار آزمایشگاهی">
           <defs>
             <linearGradient id="glass" x1="0" x2="1">
-              <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
-              <stop offset="1" stop-color="#e4f9fa" stop-opacity=".65"/>
+              <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+              <stop offset=".55" stop-color="#effff9" stop-opacity=".5"/>
+              <stop offset="1" stop-color="#fff" stop-opacity=".85"/>
             </linearGradient>
             <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#27c4ac"/>
-              <stop offset="1" stop-color="#087e80"/>
+              <stop offset="0" stop-color="#48bea3"/>
+              <stop offset="1" stop-color="#08776f"/>
+            </linearGradient>
+            <linearGradient id="cap" x1="0" x2="1">
+              <stop offset="0" stop-color="#123f43"/>
+              <stop offset="1" stop-color="#36716a"/>
             </linearGradient>
           </defs>
-          <ellipse cx="120" cy="259" rx="76" ry="13" fill="#102b35" opacity=".10"/>
-          <g transform="rotate(15 120 140)">
-            <path d="M80 42H160V205A40 40 0 0 1 80 205Z"
-                  fill="url(#glass)" stroke="#ffffff" stroke-width="4"/>
-            <path d="M87 125Q120 111 153 125V204A33 33 0 0 1 87 204Z"
-                  fill="url(#liquid)"/>
-            <rect x="73" y="20" width="94" height="35" rx="10" fill="#102b35"/>
-            <path d="M92 28V45M110 28V45M130 28V45M149 28V45"
-                  stroke="#4c747f" stroke-width="4"/>
-            <path d="M98 70V108" stroke="white" stroke-width="7" stroke-linecap="round"/>
-            <circle cx="111" cy="151" r="6" fill="#ffffff" opacity=".55"/>
-            <circle cx="133" cy="181" r="9" fill="#ffffff" opacity=".25"/>
-            <circle cx="110" cy="207" r="4" fill="#ffffff" opacity=".6"/>
+
+          <ellipse cx="226" cy="361" rx="140" ry="22" fill="#1c6551" opacity=".09"/>
+          <path d="M96 344h259l-23 27H117z" fill="#c2d8ce"/>
+          <rect x="96" y="327" width="259" height="23" rx="11" fill="#f7fff9"/>
+
+          <g transform="rotate(-13 150 220)">
+            <path d="M111 110h76v166a38 38 0 0 1-76 0z" fill="url(#glass)" stroke="#fff" stroke-width="3"/>
+            <path d="M117 196q32-13 64 0v79a32 32 0 0 1-64 0z" fill="url(#liquid)"/>
+            <rect x="103" y="86" width="92" height="37" rx="10" fill="url(#cap)"/>
+            <path d="M117 93v22m16-22v22m16-22v22m16-22v22m16-22v22" stroke="#ffffff25" stroke-width="4"/>
+            <path d="M125 139v40" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+            <rect x="122" y="218" width="54" height="48" rx="7" fill="#ffffffec"/>
+            <path d="M132 232h34m-34 8h24m-24 8h28" stroke="#6e9a89" stroke-width="3"/>
+            <circle cx="155" cy="285" r="5" fill="#fff" opacity=".35"/>
           </g>
-          <circle cx="195" cy="93" r="18" fill="#ffffff" opacity=".75"/>
-          <path d="M187 93H203M195 85V101" stroke="#087e80" stroke-width="3"/>
+
+          <g transform="rotate(11 282 230)">
+            <path d="M257 133h50v66l46 87c12 24-2 37-24 37h-94c-22 0-35-13-23-37l45-87z"
+                  fill="url(#glass)" stroke="white" stroke-width="3"/>
+            <path d="M238 250q40 13 88 0l21 40c8 16-1 25-18 25h-94c-17 0-25-9-17-25z"
+                  fill="url(#liquid)" opacity=".9"/>
+            <rect x="249" y="121" width="66" height="20" rx="6" fill="#f7fff9" stroke="#c7dfd2"/>
+            <path d="M268 153v48l-30 57" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="275" cy="280" r="7" fill="white" opacity=".4"/>
+            <circle cx="310" cy="297" r="4" fill="white" opacity=".6"/>
+          </g>
+
+          <g transform="translate(315 67)">
+            <circle cx="0" cy="0" r="27" fill="#f7fff8" opacity=".9"/>
+            <path d="M-10 0h20M0-10v20" stroke="#087d76" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <circle cx="81" cy="236" r="6" fill="#f8fff9"/>
+          <circle cx="354" cy="218" r="8" fill="#f8fff9" opacity=".8"/>
         </svg>
 
-        <div class="float-card bottom">
-          <span class="mini-icon" aria-hidden="true">↗</span>
-          <div><strong>خدمات، بدون سردرگمی</strong><small>از راهنمای آزمایش تا درخواست نوبت</small></div>
+        <div class="floating-card top">
+          <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+          <div><strong>آگاهی، پیش از مراجعه</strong><small>راهنمای ساده و قابل دسترس</small></div>
         </div>
+        <div class="floating-card bottom">
+          <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <div><strong>اطلاعات شما، حریم شما</strong><small>رویکردی مسئولانه به خدمات دیجیتال</small></div>
+        </div>
+        <span class="art-label" aria-hidden="true">ODLINKZ / LAB CONCEPT</span>
       </div>
     </section>
 
-    <div class="quick-links" aria-label="دسترسی سریع">
-      <button class="quick-link" data-open="result-dialog">
-        <span class="mini-icon" aria-hidden="true">▤</span>
-        <span><strong>جواب آزمایش</strong><small>معرفی مسیر دریافت امن</small></span>
+    <div class="quick-grid" aria-label="دسترسی سریع">
+      <button class="quick-card" data-open="result-dialog">
+        <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+        <span><strong>جواب آزمایش</strong><small>مسیر دریافت نتیجه</small></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
       </button>
-      <button class="quick-link" data-open="booking-dialog" data-mode="visit">
-        <span class="mini-icon" aria-hidden="true">◷</span>
-        <span><strong>درخواست نوبت</strong><small>فرم آزمایشی مراجعه</small></span>
+      <button class="quick-card" data-open="booking-dialog" data-mode="visit">
+        <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+        <span><strong>درخواست نوبت</strong><small>برنامه‌ریزی برای مراجعه</small></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
       </button>
-      <button class="quick-link" data-open="booking-dialog" data-mode="home">
-        <span class="mini-icon" aria-hidden="true">⌂</span>
-        <span><strong>نمونه‌گیری منزل</strong><small>آشنایی با فرایند درخواست</small></span>
+      <button class="quick-card" data-open="booking-dialog" data-mode="home">
+        <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+        <span><strong>نمونه‌گیری منزل</strong><small>درخواست خدمات در محل</small></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
       </button>
-      <a class="quick-link" href="#insurance">
-        <span class="mini-icon" aria-hidden="true">+</span>
-        <span><strong>بیمه‌ها</strong><small>اطلاعات پوشش و مدارک</small></span>
+      <a class="quick-card" href="#insurance">
+        <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <span><strong>راهنمای بیمه‌ها</strong><small>پوشش و مدارک پذیرش</small></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
       </a>
     </div>
 
-    <section class="block" id="services">
-      <div class="section-head">
+    <section class="section" id="services">
+      <div class="section-heading">
         <div>
           <span class="eyebrow">خدمات آزمایشگاهی</span>
-          <h2>اطلاعات روشن، انتخاب آسان‌تر</h2>
-          <p>دسته‌بندی‌های پیشنهادی؛ خدمات واقعی باید توسط آزمایشگاه تأیید شوند.</p>
+          <h2>یک قدم نزدیک‌تر به شناخت سلامت</h2>
+          <p>دسته‌بندی پیشنهادی خدمات؛ قابل تنظیم براساس امکانات واقعی مجموعه.</p>
         </div>
-        <a class="btn secondary" href="#tests">مشاهده راهنمای آزمایش‌ها ←</a>
+        <a class="text-link" href="#tests">راهنمای آزمایش‌ها <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
 
-      <div class="grid-3">
-        <article class="card">
-          <span class="service-number">۰۱ / HEMATOLOGY</span>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-top">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg></span>
+            <span dir="ltr">01 / BLOOD</span>
+          </div>
           <h3>خون‌شناسی</h3>
-          <p>معرفی آزمایش‌های مرتبط با شمارش و بررسی سلول‌های خون.</p>
-          <span class="tag">شمارش سلول‌های خونی</span>
+          <p>آشنایی با آزمایش‌های مرتبط با شمارش و بررسی سلول‌های خونی و شرایط آمادگی آن‌ها.</p>
+          <a class="text-link" href="#tests" data-category-link="blood">مشاهده آزمایش‌ها <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
-        <article class="card">
-          <span class="service-number">۰۲ / BIOCHEMISTRY</span>
+
+        <article class="service-card featured">
+          <div class="service-top">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg></span>
+            <span dir="ltr">02 / BIOCHEMISTRY</span>
+          </div>
           <h3>بیوشیمی بالینی</h3>
-          <p>راهنمای آزمایش‌های مرتبط با قند، چربی و شاخص‌های بیوشیمیایی.</p>
-          <span class="tag">شاخص‌های بیوشیمیایی</span>
+          <p>راهنمای آزمایش‌های قند و شاخص‌های بیوشیمیایی، با توضیحاتی روشن برای پیش از مراجعه.</p>
+          <a class="text-link" href="#tests" data-category-link="chemistry">مشاهده آزمایش‌ها <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
-        <article class="card">
-          <span class="service-number">۰۳ / ENDOCRINOLOGY</span>
+
+        <article class="service-card">
+          <div class="service-top">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-dna"/></svg></span>
+            <span dir="ltr">03 / HORMONES</span>
+          </div>
           <h3>هورمون‌شناسی</h3>
-          <p>آشنایی با آزمایش‌های هورمونی و نکات مهم پیش از نمونه‌گیری.</p>
-          <span class="tag">بررسی شاخص‌های هورمونی</span>
+          <p>اطلاعات اولیه درباره آزمایش‌های هورمونی و نکاتی که باید پیش از نمونه‌گیری بدانید.</p>
+          <a class="text-link" href="#tests" data-category-link="hormone">مشاهده آزمایش‌ها <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
       </div>
     </section>
 
-    <section class="block" id="tests">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">پیش از مراجعه</span>
-          <h2>آزمایش خود را پیدا کنید</h2>
-          <p>راهنمای عمومی جایگزین دستور پزشک یا آزمایشگاه نیست.</p>
+    <section class="section" id="tests">
+      <div class="tests-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">راهنمای پیش از آزمایش</span>
+            <h2>دنبال چه آزمایشی هستید؟</h2>
+            <p>نام فارسی یا مخفف انگلیسی آزمایش را جست‌وجو کنید.</p>
+          </div>
+          <div class="search-field">
+            <label for="test-search" class="sr-only">جست‌وجوی آزمایش</label>
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <input id="test-search" type="search" placeholder="مثلاً تیروئید یا CBC" autocomplete="off">
+          </div>
         </div>
-        <div class="search-wrap">
-          <label for="test-search">جست‌وجوی نام یا کد آزمایش</label>
-          <input id="test-search" type="search" placeholder="مثلاً تیروئید یا CBC">
+
+        <div class="filters" role="group" aria-label="فیلتر دسته‌بندی آزمایش">
+          <button class="filter" data-category="all" aria-pressed="true">همه آزمایش‌ها</button>
+          <button class="filter" data-category="blood" aria-pressed="false">خون‌شناسی</button>
+          <button class="filter" data-category="chemistry" aria-pressed="false">بیوشیمی</button>
+          <button class="filter" data-category="hormone" aria-pressed="false">هورمون‌شناسی</button>
         </div>
+
+        <div id="test-list" class="tests-grid"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
       </div>
-      <div class="grid-3" id="test-list"></div>
-      <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="block" id="about">
-      <div class="about">
-        <div>
-          <span class="eyebrow">درباره اودلینک‌ز</span>
-          <h2>اعتماد، از شفافیت شروع می‌شود.</h2>
+    <section class="section" id="about">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="report-card">
+            <div class="report-top">
+              <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+              <div><strong>یک تجربه منظم و روشن</strong><small>تصویر مفهومی مسیر خدمات؛ نه نتیجه پزشکی</small></div>
+            </div>
+
+            <div class="report-row"><span>پیداکردن راهنمای آزمایش</span><span>مرحله اول</span></div>
+            <div class="report-line" aria-hidden="true"><span style="width:92%"></span></div>
+            <div class="report-row"><span>آمادگی و هماهنگی مراجعه</span><span>مرحله دوم</span></div>
+            <div class="report-line" aria-hidden="true"><span style="width:73%"></span></div>
+            <div class="report-row"><span>دریافت نتیجه از مسیر مجاز</span><span>مرحله سوم</span></div>
+            <div class="report-line" aria-hidden="true"><span style="width:84%"></span></div>
+
+            <div class="report-foot"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>بدون دریافت اطلاعات پزشکی در نسخه نمایشی</div>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">فلسفه طراحی اودلینک‌ز</span>
+          <h2 class="section-title">اعتماد، با شفافیت<br>شکل می‌گیرد.</h2>
           <p>
-            این بخش برای معرفی داستان آزمایشگاه، مسئول علمی و تیم طراحی شده است.
-            در نسخه واقعی، تصاویر محیط و اطلاعات تأییدشده مجموعه در این قسمت قرار می‌گیرند.
+            اودلینک‌ز یک برند مفهومی برای نمایش تجربه‌ای بهتر از وب‌سایت آزمایشگاه است؛
+            با تمرکز بر اطلاعات خوانا، دسترسی سریع و پرهیز از پیچیدگی.
           </p>
-          <a class="btn secondary" href="#contact">اطلاعات مراجعه ←</a>
-        </div>
-        <div class="about-features">
-          <div class="about-feature">
-            <strong>تیم و مسئول علمی</strong>
-            <span>محل نمایش نام، تخصص و صلاحیت حرفه‌ای تأییدشده.</span>
+
+          <div class="check-item">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>معرفی واقعی تیم و مجموعه</strong><p>جایگاه معرفی مسئول علمی، تجهیزات و مجوزهای تأییدشده در نسخه نهایی.</p></div>
           </div>
-          <div class="about-feature">
-            <strong>مجوزها و استانداردها</strong>
-            <span>محل درج مدارک معتبر؛ این دمو ادعای داشتن مجوز ندارد.</span>
+          <div class="check-item">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>اطلاعات ساده، بدون ادعای اضافی</strong><p>محتوای پزشکی پیش از انتشار واقعی باید به تأیید مسئول علمی برسد.</p></div>
           </div>
-          <div class="about-feature">
-            <strong>حریم خصوصی مراجعه‌کننده</strong>
-            <span>در این نمونه هیچ اطلاعات پزشکی دریافت یا ذخیره نمی‌شود.</span>
+          <div class="check-item">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>دسترسی آسان روی موبایل</strong><p>مسیرهای اصلی برای صفحه‌های کوچک و استفاده با صفحه‌کلید طراحی شده‌اند.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="block" id="insurance">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">راهنمای پوشش بیمه</span>
-          <h2>بیمه‌های طرف قرارداد</h2>
-          <p>جایگاه نمایش بیمه‌ها و شرایط استفاده از پوشش خدمات.</p>
+    <section class="section" id="insurance" aria-labelledby="insurance-title">
+      <div class="insurance-box">
+        <div class="insurance-title">
+          <strong id="insurance-title">راهنمای پوشش بیمه</strong>
+          <small>دسته‌بندی نمونه؛ نه قرارداد واقعی</small>
         </div>
-      </div>
-      <div class="insurance-list">
-        <span>بیمه پایه — نمونه</span>
-        <span>بیمه تکمیلی — نمونه</span>
-        <span>قرارداد سازمانی — نمونه</span>
-        <span>مدارک و شرایط پذیرش</span>
-      </div>
-      <p class="notice">این موارد قرارداد واقعی نیستند؛ فهرست نهایی باید با پذیرش آزمایشگاه تأیید شود.</p>
-    </section>
-
-    <section class="block">
-      <div class="home-service">
-        <div>
-          <span class="eyebrow">خدمات در محل</span>
-          <h2>یک مسیر ساده برای درخواست نمونه‌گیری</h2>
-          <p>نمونه رابط درخواست؛ محدوده خدمت و زمان حضور در نسخه واقعی تأیید می‌شود.</p>
+        <div class="insurance-items">
+          <span><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>بیمه پایه</span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>بیمه تکمیلی</span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>قرارداد سازمانی</span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>مدارک مورد نیاز</span>
         </div>
-        <button class="btn dark" data-open="booking-dialog" data-mode="home">درخواست نمایشی ←</button>
       </div>
     </section>
 
-    <section class="block" id="faq">
-      <div class="faq-layout">
-        <div>
+    <section class="section" aria-labelledby="home-title">
+      <div class="home-banner">
+        <div class="home-content">
+          <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+          <div>
+            <h2 id="home-title">آسودگی بیشتر، با خدمات در محل</h2>
+            <p>پیش‌نمایش درخواست نمونه‌گیری در منزل؛ ارائه خدمت، محدوده و زمان حضور در نسخه واقعی تأیید می‌شود.</p>
+          </div>
+        </div>
+        <button class="btn lime" data-open="booking-dialog" data-mode="home">درخواست نمایشی <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="faq-grid">
+        <div class="faq-intro">
           <span class="eyebrow">پرسش‌های متداول</span>
-          <h2>قبل از مراجعه،<br>با آگاهی بیشتر.</h2>
-          <p class="muted">پاسخ‌های کوتاه به پرسش‌های رایج درباره خدمات.</p>
+          <h2 class="section-title">قبل از مراجعه،<br>پاسخ را پیدا کنید.</h2>
+          <p>چند پاسخ کوتاه به پرسش‌های رایج. راهنمای عمومی جایگزین دستور پزشک یا آزمایشگاه نیست.</p>
+          <a class="text-link" href="#contact">اطلاعات تماس و مراجعه <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div>
           <details>
-            <summary>آیا تمام آزمایش‌ها به ناشتایی نیاز دارند؟</summary>
-            <p>خیر. شرایط آمادگی به آزمایش‌های درخواست‌شده بستگی دارد. دستور پزشک و راهنمای تأییدشده آزمایشگاه را دنبال کنید.</p>
+            <summary>آیا همه آزمایش‌ها به ناشتایی نیاز دارند؟ <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>خیر. شرایط آمادگی به نوع آزمایش بستگی دارد. پیش از مراجعه، دستور پزشک و راهنمای تأییدشده آزمایشگاه را بررسی کنید.</p>
           </details>
           <details>
-            <summary>پیش از آزمایش داروهایم را قطع کنم؟</summary>
-            <p>داروها را بدون نظر پزشک قطع یا تغییر ندهید. مصرف دارو و مکمل را به پزشک و آزمایشگاه اطلاع دهید.</p>
+            <summary>آیا باید داروهایم را قبل از آزمایش قطع کنم؟ <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>دارو یا مکمل را خودسرانه قطع یا تغییر ندهید. مصرف آن‌ها را به پزشک و آزمایشگاه اطلاع دهید و درباره آمادگی هماهنگ کنید.</p>
           </details>
           <details>
-            <summary>جواب آزمایش چگونه دریافت می‌شود؟</summary>
-            <p>در نسخه عملیاتی، پس از احراز هویت و بررسی مجوز دسترسی. در این نمونه هیچ پرونده یا نتیجه واقعی وجود ندارد.</p>
+            <summary>آیا از این سایت می‌توان نتیجه واقعی گرفت؟ <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>خیر. این پروژه نمونه‌کار فرانت‌اند است. دریافت نتیجه واقعی نیازمند اتصال به سامانه امن و بررسی مجوز دسترسی در سرور است.</p>
           </details>
           <details>
-            <summary>آیا ثبت فرم به معنی تأیید نوبت است؟</summary>
-            <p>این سایت نمایشی است و نوبتی ثبت نمی‌کند. در سامانه واقعی نیز وضعیت درخواست و تأیید نهایی باید به‌صورت شفاف اعلام شود.</p>
+            <summary>ثبت فرم به معنی تأیید نوبت است؟ <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>در این دمو چیزی ثبت نمی‌شود. در نسخه عملیاتی نیز درخواست اولیه باید از نوبت تأییدشده تفکیک شود و وضعیت به مراجعه‌کننده اعلام شود.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <section class="block" id="contact">
-      <div class="section-head">
+    <section class="section" id="contact">
+      <div class="section-heading">
         <div>
           <span class="eyebrow">تماس و مراجعه</span>
-          <h2>پیداکردن ما باید ساده باشد.</h2>
-          <p>اطلاعات این بخش را پیش از انتشار برای یک آزمایشگاه واقعی تکمیل کنید.</p>
+          <h2>مسیر ارتباط، همیشه روشن</h2>
+          <p>اطلاعات نمونه را پیش از استفاده برای یک مجموعه واقعی تکمیل کنید.</p>
         </div>
       </div>
       <div class="contact-grid">
-        <div class="card">
-          <div class="contact-item"><strong>آدرس</strong><span>[شهر، خیابان، پلاک و طبقه]</span></div>
-          <div class="contact-item"><strong>تماس با پذیرش</strong><span>[شماره تماس واقعی آزمایشگاه]</span></div>
-          <div class="contact-item"><strong>ساعات پذیرش و نمونه‌گیری</strong><span>[روزها و ساعات تأییدشده مجموعه]</span></div>
+        <div class="contact-card">
+          <div class="contact-row">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+            <div><strong>آدرس آزمایشگاه</strong><p>[شهر، خیابان، پلاک و طبقه]</p></div>
+          </div>
+          <div class="contact-row">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+            <div><strong>تماس با پذیرش</strong><p>[شماره تماس تأییدشده مجموعه]</p></div>
+          </div>
+          <div class="contact-row">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
+            <div><strong>ساعات پذیرش و نمونه‌گیری</strong><p>[روزها و ساعات کاری واقعی]</p></div>
+          </div>
         </div>
-        <div class="map-placeholder">
-          <div>
-            <strong>⌖ موقعیت آزمایشگاه</strong>
-            <p>نقشه و لینک مسیریابی پس از تعیین آدرس اضافه می‌شود.</p>
+        <div class="map">
+          <div class="map-label">
+            <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+            <strong>جایگاه نقشه و مسیریابی</strong>
+            <p>این تصویر نقشه واقعی نیست؛ موقعیت پس از تعیین آدرس اضافه می‌شود.</p>
           </div>
         </div>
       </div>
@@ -686,21 +802,29 @@
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>اودلینک‌ز / پروژه مفهومی طراحی وب‌سایت آزمایشگاه</span>
-      <span>طراحی و توسعه: [نام شما] · <span id="year"></span></span>
+    <div class="container">
+      <div class="footer-top">
+        <a class="brand" href="#">
+          <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"/></svg></span>
+          <span><strong>اودلینک‌ز</strong><small>مراقبت، از آگاهی شروع می‌شود</small></span>
+        </a>
+        <p>یک پروژه مفهومی برای تجربه‌ای مدرن، ساده و انسانی از خدمات دیجیتال آزمایشگاهی.</p>
+        <button class="footer-button" data-open="partner-dialog"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>پنل همکاران</button>
+      </div>
+      <div class="footer-bottom">
+        <span>طراحی و توسعه: [نام شما] · <span id="year"></span></span>
+        <span>نسخه نمونه‌کار — بدون اتصال به اطلاعات سلامت یا سامانه نوبت‌دهی</span>
+      </div>
     </div>
   </footer>
 
+  <!-- پنجره درخواست خدمات -->
   <dialog id="booking-dialog" aria-labelledby="booking-title">
-    <div class="dialog-header">
-      <h2 id="booking-title">درخواست نمایشی خدمات</h2>
-      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    <div class="dialog-head">
+      <div><span class="eyebrow">پیش‌نمایش خدمات</span><h2 id="booking-title">درخواست نوبت نمایشی</h2></div>
+      <button class="close" data-close aria-label="بستن پنجره"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <p class="demo-note">
-      این فرم فقط برای نمایش تعاملات است. اطلاعات هویتی وارد نکنید؛
-      چیزی ذخیره یا ارسال نمی‌شود و نوبتی رزرو نخواهد شد.
-    </p>
+    <p class="notice">این فرم نمایشی است. هیچ اطلاعاتی ارسال یا ذخیره نمی‌شود و نوبت واقعی ثبت نخواهد شد.</p>
     <form id="booking-form">
       <div class="form-field">
         <label for="service-mode">نوع درخواست</label>
@@ -709,240 +833,416 @@
           <option value="home">نمونه‌گیری در منزل</option>
         </select>
       </div>
-      <div class="form-field">
-        <label for="visit-date">تاریخ پیشنهادی — انتخاب با تقویم مرورگر</label>
-        <input id="visit-date" type="date" required>
+      <div class="form-pair">
+        <div class="form-field">
+          <label for="visit-date">تاریخ پیشنهادی</label>
+          <input id="visit-date" type="date" required aria-describedby="date-help">
+        </div>
+        <div class="form-field">
+          <label for="visit-time">بازه پیشنهادی</label>
+          <select id="visit-time" required>
+            <option value="">انتخاب کنید</option>
+            <option>۸ تا ۱۰</option>
+            <option>۱۰ تا ۱۲</option>
+            <option>۱۲ تا ۱۴</option>
+          </select>
+        </div>
       </div>
-      <div class="form-field">
-        <label for="visit-time">بازه پیشنهادی — ظرفیت‌ها واقعی نیستند</label>
-        <select id="visit-time" required>
-          <option value="">یک بازه انتخاب کنید</option>
-          <option>۸ تا ۱۰</option>
-          <option>۱۰ تا ۱۲</option>
-          <option>۱۲ تا ۱۴</option>
-        </select>
-      </div>
-      <button class="btn full" type="submit">آزمایش فرایند درخواست</button>
-      <div id="booking-feedback" class="feedback" role="status" hidden></div>
+      <p id="date-help" class="muted" style="font-size:.72rem;margin-bottom:18px">
+        تقویم براساس مرورگر نمایش داده می‌شود؛ ظرفیت‌ها واقعی نیستند.
+      </p>
+      <button class="btn full" type="submit">آزمایش فرایند درخواست <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <div id="booking-feedback" class="feedback" role="status" aria-live="polite" hidden></div>
     </form>
   </dialog>
 
   <dialog id="result-dialog" aria-labelledby="result-title">
-    <div class="dialog-header">
-      <h2 id="result-title">دریافت امن جواب آزمایش</h2>
-      <button class="close" data-close aria-label="بستن پنجره">×</button>
+    <div class="dialog-head">
+      <h2 id="result-title">دریافت جواب آزمایش</h2>
+      <button class="close" data-close aria-label="بستن پنجره"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <p class="demo-note">این بخش یک پیش‌نمایش است و به سامانه جواب‌دهی متصل نیست.</p>
-    <p class="muted">
-      در نسخه واقعی، دسترسی به نتیجه پس از احراز هویت و بررسی ارتباط حساب
-      با پرونده انجام می‌شود. کد ملی یا شماره پذیرش به‌تنهایی کافی نیست.
-    </p>
-    <ol>
-      <li>ورود از مسیر احراز هویت امن</li>
-      <li>بررسی مجوز دسترسی در سرور</li>
-      <li>نمایش نتایج مجاز و دانلود محافظت‌شده</li>
-    </ol>
-    <p class="notice">پیامک احتمالی فقط آماده‌شدن نتیجه را اعلام می‌کند، نه اطلاعات پزشکی را.</p>
+    <p class="notice">این بخش به هیچ پرونده یا سامانه پزشکی متصل نیست.</p>
+    <div class="dialog-copy">
+      <p>در نسخه عملیاتی، مسیر دریافت نتیجه باید شامل این مراحل باشد:</p>
+      <ol>
+        <li>احراز هویت امن مراجعه‌کننده.</li>
+        <li>بررسی ارتباط حساب با پرونده و مجوز دسترسی در سرور.</li>
+        <li>نمایش نتایج مجاز و دانلود محافظت‌شده.</li>
+      </ol>
+      <p>کد ملی یا شماره پذیرش به‌تنهایی کافی نیست. پیامک نیز فقط باید آماده‌شدن نتیجه را اعلام کند، نه اطلاعات پزشکی را.</p>
+    </div>
   </dialog>
 
   <dialog id="partner-dialog" aria-labelledby="partner-title">
-    <div class="dialog-header">
+    <div class="dialog-head">
       <h2 id="partner-title">پنل پزشکان و مراکز همکار</h2>
-      <button class="close" data-close aria-label="بستن پنجره">×</button>
+      <button class="close" data-close aria-label="بستن پنجره"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <p class="demo-note">پیش‌نمایش امکانات؛ ورود عملیاتی در این نسخه وجود ندارد.</p>
-    <ul>
-      <li>حساب تأییدشده برای پزشک یا مرکز همکار</li>
-      <li>دسترسی فقط به پرونده‌های مجاز</li>
-      <li>ثبت و بررسی رویدادهای دسترسی</li>
-      <li>پیگیری درخواست‌های ارجاعی مجاز</li>
+    <p class="notice">نمایش طرح امکانات؛ ورود عملیاتی در این دمو وجود ندارد.</p>
+    <ul class="dialog-copy">
+      <li>حساب تأییدشده برای پزشک یا مرکز همکار.</li>
+      <li>دسترسی محدود به پرونده‌های مجاز.</li>
+      <li>پیگیری درخواست‌های ارجاعی مجاز.</li>
+      <li>ثبت و بررسی رویدادهای دسترسی.</li>
     </ul>
-    <p class="muted">اجرای این بخش به زیرساخت امن و بررسی الزامات محرمانگی نیاز دارد.</p>
   </dialog>
 
   <dialog id="test-dialog" aria-labelledby="test-title">
-    <div class="dialog-header">
+    <div class="dialog-head">
       <h2 id="test-title"></h2>
-      <button class="close" data-close aria-label="بستن پنجره">×</button>
+      <button class="close" data-close aria-label="بستن پنجره"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <span id="test-code" class="tag"></span>
-    <p id="test-guide" style="margin-top:18px"></p>
-    <p><strong>نوع نمونه: </strong><span id="test-sample"></span></p>
-    <p class="muted">زمان آماده‌شدن نتیجه: پس از تأیید آزمایشگاه مشخص می‌شود.</p>
-    <p class="demo-note">راهنمای عمومی نمونه است؛ محتوای نهایی باید به تأیید مسئول علمی برسد.</p>
+    <span id="test-code" class="tag" dir="ltr"></span>
+    <p id="test-guide" class="dialog-copy" style="margin-top:18px"></p>
+    <div class="dialog-meta">
+      <p><strong>نوع نمونه: </strong><span id="test-sample"></span></p>
+      <p><strong>زمان نتیجه: </strong>پس از تأیید آزمایشگاه مشخص می‌شود.</p>
+    </div>
+    <p class="notice">این راهنما عمومی است. محتوای نسخه واقعی باید به تأیید مسئول علمی برسد و جایگزین دستور پزشک نیست.</p>
   </dialog>
 
   <script>
+    "use strict";
+
     const tests = [
       {
         code: "CBC",
         name: "شمارش کامل سلول‌های خون",
-        keywords: "خون کم خونی",
-        description: "آشنایی با آزمایش شمارش سلول‌های خونی.",
-        guide: "برای CBC به‌تنهایی معمولاً ناشتایی لازم نیست؛ اگر آزمایش‌های دیگری همراه آن درخواست شده، شرایط آن‌ها را از آزمایشگاه بپرسید.",
+        category: "blood",
+        label: "خون‌شناسی",
+        keywords: "خون کم خونی سلول",
+        description: "راهنمای عمومی آزمایش شمارش سلول‌های خونی.",
+        guide: "برای CBC به‌تنهایی معمولاً ناشتایی لازم نیست. اگر آزمایش‌های دیگری همراه آن درخواست شده، شرایط آمادگی آن‌ها را از آزمایشگاه بپرسید.",
         sample: "خون"
       },
       {
         code: "FBS",
         name: "قند خون ناشتا",
-        keywords: "قند دیابت گلوکز",
-        description: "راهنمای عمومی پیش از سنجش قند خون ناشتا.",
-        guide: "این آزمایش نیازمند ناشتایی است. مدت و شرایط دقیق را از آزمایشگاه دریافت کنید. در صورت مصرف داروی دیابت، درباره آمادگی با پزشک هماهنگ کنید و خودسرانه دارو را تغییر ندهید.",
+        category: "chemistry",
+        label: "بیوشیمی",
+        keywords: "قند دیابت گلوکز ناشتا",
+        description: "نکات آمادگی پیش از سنجش قند خون ناشتا.",
+        guide: "این آزمایش به ناشتایی نیاز دارد. مدت و شرایط دقیق را از آزمایشگاه دریافت کنید. در صورت مصرف داروی دیابت، درباره آمادگی با پزشک هماهنگ کنید و خودسرانه دارو را تغییر ندهید.",
         sample: "خون"
       },
       {
         code: "TSH",
         name: "هورمون محرک تیروئید",
+        category: "hormone",
+        label: "هورمون‌شناسی",
         keywords: "تیروئید هورمون",
         description: "اطلاعات اولیه درباره یکی از آزمایش‌های تیروئید.",
-        guide: "داروها و مکمل‌های مصرفی، به‌ویژه بیوتین، را اطلاع دهید؛ ممکن است بر برخی روش‌های آزمایش اثر بگذارند. هیچ دارو یا مکملی را بدون هماهنگی قطع نکنید.",
+        guide: "داروها و مکمل‌های مصرفی، به‌ویژه بیوتین، را به پزشک و آزمایشگاه اطلاع دهید؛ ممکن است بر برخی روش‌های آزمایش اثر بگذارند. هیچ دارو یا مکملی را بدون هماهنگی قطع نکنید.",
         sample: "خون"
       }
     ];
 
-    const list = document.querySelector("#test-list");
-    const status = document.querySelector("#search-status");
+    const list = document.getElementById("test-list");
+    const search = document.getElementById("test-search");
+    const searchStatus = document.getElementById("search-status");
+    const menuButton = document.getElementById("menu-button");
+    const nav = document.getElementById("main-nav");
+    const bookingForm = document.getElementById("booking-form");
+    const bookingFeedback = document.getElementById("booking-feedback");
+    const serviceMode = document.getElementById("service-mode");
+    const visitDate = document.getElementById("visit-date");
+    const bookingTitle = document.getElementById("booking-title");
 
-    function normalize(text) {
-      return text.replace(/ي/g, "ی").replace(/ك/g, "ک")
-        .replace(/\u200c/g, " ").toLowerCase().trim();
+    let selectedCategory = "all";
+
+    function makeIcon(name) {
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+
+      svg.setAttribute("class", "icon");
+      svg.setAttribute("aria-hidden", "true");
+
+      const use = document.createElementNS(ns, "use");
+      use.setAttribute("href", `#i-${name}`);
+
+      svg.appendChild(use);
+      return svg;
     }
 
-    function renderTests(query = "") {
-      const filtered = tests.filter(test =>
-        normalize(`${test.code} ${test.name} ${test.keywords}`)
-          .includes(normalize(query))
-      );
+    function normalizeText(value) {
+      return String(value || "")
+        .trim()
+        .toLocaleLowerCase("fa-IR")
+        .replace(/ي/g, "ی")
+        .replace(/ك/g, "ک");
+    }
 
-      list.replaceChildren();
+    function getFilteredTests() {
+      const query = normalizeText(search.value);
+
+      return tests.filter(test => {
+        const categoryMatch =
+          selectedCategory === "all" ||
+          test.category === selectedCategory;
+
+        const searchableText = normalizeText(
+          `${test.code} ${test.name} ${test.label} ${test.keywords} ${test.description}`
+        );
+
+        const searchMatch =
+          !query || searchableText.includes(query);
+
+        return categoryMatch && searchMatch;
+      });
+    }
+
+    function renderTests() {
+      list.innerHTML = "";
+
+      const filtered = getFilteredTests();
 
       filtered.forEach(test => {
-        const article = document.createElement("article");
-        article.className = "card test-card";
+        const card = document.createElement("article");
+        card.className = "test-card";
+
+        const top = document.createElement("div");
+        top.className = "test-top";
 
         const code = document.createElement("span");
         code.className = "test-code";
         code.dir = "ltr";
         code.textContent = test.code;
 
-        const heading = document.createElement("h3");
-        heading.textContent = test.name;
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = test.label;
+
+        top.append(code, tag);
+
+        const title = document.createElement("h3");
+        title.textContent = test.name;
 
         const description = document.createElement("p");
         description.textContent = test.description;
 
         const button = document.createElement("button");
-        button.className = "btn secondary";
-        button.textContent = "راهنمای آمادگی ←";
-        button.setAttribute("aria-label", `راهنمای آمادگی ${test.name}`);
-        button.addEventListener("click", () => {
-          document.querySelector("#test-title").textContent = test.name;
-          document.querySelector("#test-code").textContent = test.code;
-          document.querySelector("#test-guide").textContent = test.guide;
-          document.querySelector("#test-sample").textContent = test.sample;
-          openDialog("test-dialog");
-        });
+        button.type = "button";
+        button.className = "text-link";
+        button.setAttribute("data-test-code", test.code);
+        button.append(
+          document.createTextNode("راهنمای آزمایش "),
+          makeIcon("arrow")
+        );
 
-        article.append(code, heading, description, button);
-        list.append(article);
+        card.append(top, title, description, button);
+        list.appendChild(card);
       });
 
-      status.textContent = filtered.length
-        ? `${filtered.length.toLocaleString("fa-IR")} آزمایش نمونه نمایش داده می‌شود.`
-        : "آزمایشی پیدا نشد. نام دیگر یا کد کوتاه‌تر را امتحان کنید.";
+      const total = filtered.length;
+      const allCount = tests.length;
+
+      if (total === 0) {
+        searchStatus.textContent = "آزمایشی با این مشخصات پیدا نشد.";
+      } else if (search.value.trim() || selectedCategory !== "all") {
+        searchStatus.textContent = `${total} مورد از ${allCount} آزمایش نمایش داده می‌شود.`;
+      } else {
+        searchStatus.textContent = `${allCount} آزمایش نمونه در فهرست موجود است.`;
+      }
     }
 
-    function openDialog(id) {
-      const dialog = document.getElementById(id);
-      dialog.showModal();
+    function openDialog(dialog) {
+      if (!dialog) return;
+
+      if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute("open", "");
+      }
+
       document.body.classList.add("modal-open");
     }
 
-    document.querySelectorAll("[data-open]").forEach(button => {
-      button.addEventListener("click", () => {
-        if (button.dataset.open === "booking-dialog") {
-          document.querySelector("#booking-form").reset();
-          document.querySelector("#service-mode").value = button.dataset.mode || "visit";
-          document.querySelector("#booking-feedback").hidden = true;
-        }
-        openDialog(button.dataset.open);
-      });
-    });
+    function closeDialog(dialog) {
+      if (!dialog) return;
 
-    document.querySelectorAll("dialog").forEach(dialog => {
-      dialog.querySelector("[data-close]").addEventListener("click", () => dialog.close());
-      dialog.addEventListener("close", () => {
-        document.body.classList.remove("modal-open");
-      });
-    });
+      if (typeof dialog.close === "function" && dialog.open) {
+        dialog.close();
+      } else {
+        dialog.removeAttribute("open");
+      }
 
-    const menuButton = document.querySelector("#menu-toggle");
-    const nav = document.querySelector("#main-nav");
-
-    function closeMenu() {
-      nav.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("modal-open");
     }
 
-    menuButton.addEventListener("click", () => {
-      const expanded = nav.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(expanded));
+    function setupDialogButtons() {
+      document.querySelectorAll("[data-open]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = button.getAttribute("data-open");
+          const dialog = document.getElementById(id);
+
+          if (!dialog) return;
+
+          if (id === "booking-dialog") {
+            const mode = button.getAttribute("data-mode") || "visit";
+            serviceMode.value = mode;
+            updateBookingDialogMode();
+          }
+
+          openDialog(dialog);
+        });
+      });
+
+      document.querySelectorAll("[data-close]").forEach(button => {
+        button.addEventListener("click", () => {
+          const dialog = button.closest("dialog");
+          closeDialog(dialog);
+        });
+      });
+
+      document.querySelectorAll("dialog").forEach(dialog => {
+        dialog.addEventListener("click", event => {
+          if (event.target === dialog) {
+            closeDialog(dialog);
+          }
+        });
+
+        dialog.addEventListener("close", () => {
+          document.body.classList.remove("modal-open");
+        });
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key !== "Escape") return;
+
+        const openedDialog = document.querySelector("dialog[open]");
+        if (openedDialog) {
+          closeDialog(openedDialog);
+        }
+
+        if (nav.classList.contains("open")) {
+          nav.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    function updateBookingDialogMode() {
+      const mode = serviceMode.value;
+
+      if (mode === "home") {
+        bookingTitle.textContent = "درخواست نمونه‌گیری در منزل";
+      } else {
+        bookingTitle.textContent = "درخواست نوبت نمایشی";
+      }
+
+      bookingFeedback.hidden = true;
+      bookingFeedback.textContent = "";
+    }
+
+    function openTestDialog(test) {
+      const dialog = document.getElementById("test-dialog");
+      const title = document.getElementById("test-title");
+      const code = document.getElementById("test-code");
+      const guide = document.getElementById("test-guide");
+      const sample = document.getElementById("test-sample");
+
+      title.textContent = test.name;
+      code.textContent = test.code;
+      guide.textContent = test.guide;
+      sample.textContent = test.sample;
+
+      openDialog(dialog);
+    }
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category || "all";
+
+        document.querySelectorAll(".filter").forEach(item => {
+          item.setAttribute(
+            "aria-pressed",
+            String(item === button)
+          );
+        });
+
+        renderTests();
+      });
     });
 
-    nav.querySelectorAll("a, button").forEach(item => {
-      item.addEventListener("click", closeMenu);
-    });
+    search.addEventListener("input", renderTests);
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && nav.classList.contains("open")) {
-        closeMenu();
-        menuButton.focus();
+    list.addEventListener("click", event => {
+      const button = event.target.closest("[data-test-code]");
+      if (!button) return;
+
+      const test = tests.find(
+        item => item.code === button.getAttribute("data-test-code")
+      );
+
+      if (test) {
+        openTestDialog(test);
       }
     });
 
-    const dateInput = document.querySelector("#visit-date");
+    document.querySelectorAll("[data-category-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        selectedCategory = link.getAttribute("data-category-link") || "all";
 
-    function localToday() {
-      const now = new Date();
-      const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-      return local.toISOString().slice(0, 10);
+        document.querySelectorAll(".filter").forEach(button => {
+          const active =
+            button.dataset.category === selectedCategory;
+
+          button.setAttribute("aria-pressed", String(active));
+        });
+
+        renderTests();
+      });
+    });
+
+    if (menuButton) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
     }
 
-    dateInput.min = localToday();
-    dateInput.addEventListener("input", () => dateInput.setCustomValidity(""));
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
 
-    document.querySelector("#booking-form").addEventListener("submit", event => {
+    serviceMode.addEventListener("change", updateBookingDialogMode);
+
+    bookingForm.addEventListener("submit", event => {
       event.preventDefault();
 
-      if (dateInput.value < localToday()) {
-        dateInput.setCustomValidity("لطفاً امروز یا یک تاریخ آینده را انتخاب کنید.");
-        dateInput.reportValidity();
+      if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
         return;
       }
 
-      dateInput.setCustomValidity("");
-      const date = new Date(`${dateInput.value}T12:00:00`)
-        .toLocaleDateString("fa-IR");
-      const mode = document.querySelector("#service-mode").value === "home"
-        ? "نمونه‌گیری در منزل"
-        : "مراجعه حضوری";
-      const time = document.querySelector("#visit-time").value;
-      const feedback = document.querySelector("#booking-feedback");
+      const modeLabel =
+        serviceMode.value === "home"
+          ? "نمونه‌گیری در منزل"
+          : "مراجعه حضوری";
 
-      feedback.textContent =
-        `پیش‌نمایش درخواست: ${mode}، ${date}، ساعت ${time}. ` +
-        "تعامل فرم با موفقیت اجرا شد؛ هیچ نوبتی ثبت و هیچ پیامکی ارسال نشده است.";
-      feedback.hidden = false;
+      bookingFeedback.textContent =
+        `درخواست نمایشی شما برای «${modeLabel}» ثبت آزمایشی شد. این اطلاعات به هیچ سامانه‌ای ارسال یا ذخیره نشده است.`;
+
+      bookingFeedback.hidden = false;
     });
 
-    document.querySelector("#test-search").addEventListener("input", event => {
-      renderTests(event.target.value);
-    });
+    const today = new Date();
+    const localDate = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split("T")[0];
 
-    document.querySelector("#year").textContent =
-      new Intl.DateTimeFormat("fa-IR", { year: "numeric" }).format(new Date());
+    visitDate.min = localDate;
 
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    setupDialogButtons();
     renderTests();
+    updateBookingDialogMode();
   </script>
 </body>
 </html>
